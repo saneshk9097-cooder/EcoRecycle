@@ -162,12 +162,13 @@ app.use('/recycling', recyclingRoutes);
 app.use('/education', educationRoutes);
 
 // Connect to MongoDB (commented out for now)
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ewaste_db', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// })
-// .then(() => console.log('MongoDB connected'))
-// .catch(err => console.log(err));
+mongoose.connect(process.env.MONGODB_URI)
+// {
+//   // useNewUrlParser: true,
+//   // useUnifiedTopology: true
+// }
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.log(err));
 
 // Error handling middleware
 app.use((req, res, next) => {
@@ -180,7 +181,7 @@ app.use((req, res, next) => {
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${process.env.PORT}`);
 });
 
 module.exports = app; 
