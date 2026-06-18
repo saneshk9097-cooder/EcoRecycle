@@ -10,7 +10,7 @@ const connectDB = async () => {
     }
 
     try {
-        const db = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/e-waste-management', {
+        const db = await mongoose.connect(process.env.MONGODB_URI, {
             bufferCommands: true,
             maxPoolSize: 10,
             serverSelectionTimeoutMS: 5000,

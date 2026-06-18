@@ -5,6 +5,8 @@ const authController = require('../controllers/authController');
 const educationController = require('../controllers/educationController');
 const { isAuth, isGuest } = require('../middleware/auth');
 
+const reviewController = require('../controllers/reviewController');
+
 // Home page
 router.get('/', mainController.getIndex);
 
@@ -43,5 +45,12 @@ router.get('/articles/:slug', educationController.getArticleDetail);
 
 // Videos
 router.get('/videos', educationController.getVideos);
+
+// Reviews
+router.get('/reviews', reviewController.getReviews);
+router.post('/reviews', isAuth, reviewController.postReview);
+router.get('/reviews/:id/edit', isAuth, reviewController.getEditReview);
+router.post('/reviews/:id/edit', isAuth, reviewController.postEditReview);
+router.post('/reviews/:id/delete', isAuth, reviewController.deleteReview);
 
 module.exports = router; 
