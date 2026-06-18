@@ -77,25 +77,50 @@
               </button>
             </li>
             <% if (typeof user !== 'undefined' && user) { %>
-              <li class="nav-item">
-                <a class="nav-link <%= path === '/dashboard' ? 'active' : '' %>" href="/dashboard">
-                  <i class="fas fa-user-circle me-1 text-primary"></i> Dashboard (<%= user.firstName %>)
+              <li class="nav-item dropdown ms-lg-2">
+                <a class="nav-link dropdown-toggle d-flex align-items-center p-1" href="#" id="userProfileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: var(--radius-xl); outline: none;">
+                  <div class="user-avatar-initials d-flex align-items-center justify-content-center text-white fw-bold me-2 shadow-sm" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); font-size: 0.875rem;">
+                    <%= (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase() %>
+                  </div>
+                  <span class="d-none d-lg-inline text-muted me-1" style="font-weight: 600;"><%= user.firstName %></span>
                 </a>
-              </li>
-              <li class="nav-item ms-lg-2">
-                <a class="nav-link btn btn-outline-danger text-danger px-3 py-1 mt-1 mt-lg-0" style="font-size: 0.85rem;" href="/logout">
-                  <i class="fas fa-sign-out-alt me-1"></i> Logout
-                </a>
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg p-2 mt-2" aria-labelledby="userProfileDropdown" style="min-width: 220px;">
+                  <li class="dropdown-header py-2 px-3 border-bottom mb-2">
+                    <div class="fw-bold text-dark-subtle" style="color: var(--text-color) !important;"><%= user.firstName %> <%= user.lastName %></div>
+                    <div class="small text-muted text-truncate" style="max-width: 170px;"><%= user.email %></div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 d-flex align-items-center" href="/dashboard">
+                      <i class="fas fa-chart-line me-2 text-success" style="width: 16px;"></i>Dashboard
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 d-flex align-items-center" href="/dashboard">
+                      <i class="fas fa-user me-2 text-success" style="width: 16px;"></i>Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 d-flex align-items-center" href="/dashboard">
+                      <i class="fas fa-cog me-2 text-success" style="width: 16px;"></i>Settings
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <a class="dropdown-item py-2 text-danger btn-logout-trigger d-flex align-items-center" href="#">
+                      <i class="fas fa-sign-out-alt me-2" style="width: 16px;"></i>Logout
+                    </a>
+                  </li>
+                </ul>
               </li>
             <% } else { %>
               <li class="nav-item">
-                <a class="nav-link <%= path === '/login' ? 'active' : '' %>" href="/login">
-                  <i class="fas fa-sign-in-alt me-1"></i> Login
+                <a class="nav-link d-flex align-items-center <%= path === '/login' ? 'active' : '' %>" href="/login" style="font-weight: 600;">
+                  <i class="fas fa-sign-in-alt me-2"></i>Login
                 </a>
               </li>
-              <li class="nav-item ms-lg-2">
-                <a class="nav-link btn btn-success text-white px-3 py-1 mt-1 mt-lg-0" style="font-size: 0.85rem;" href="/register">
-                  <i class="fas fa-user-plus me-1"></i> Register
+              <li class="nav-item ms-lg-3">
+                <a class="btn btn-success text-white d-flex align-items-center px-4 py-2 mt-2 mt-lg-0 shadow-sm" href="/register" style="font-size: 0.875rem; font-weight: 600; border-radius: var(--radius-sm);">
+                  <i class="fas fa-user-plus me-2"></i>Register
                 </a>
               </li>
             <% } %>
