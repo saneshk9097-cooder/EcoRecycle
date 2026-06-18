@@ -55,6 +55,70 @@ Consider donating functional devices to schools, non-profit organizations, or re
     }
 ];
 
+// Education videos data
+const videos = [
+    {
+        id: 1,
+        title: 'The E-Waste Crisis Explained',
+        description: 'An overview of the global e-waste problem and its environmental impact.',
+        thumbnail: 'https://img.youtube.com/vi/ITwYEPCKFkM/maxresdefault.jpg',
+        videoId: 'ITwYEPCKFkM',
+        duration: '8:24',
+        date: 'May 10, 2023',
+        category: 'Education'
+    },
+    {
+        id: 2,
+        title: 'Inside an E-Waste Recycling Facility',
+        description: 'Take a tour of a modern e-waste recycling facility and see how electronic devices are processed.',
+        thumbnail: 'https://img.youtube.com/vi/HQkjP_DqgdQ/maxresdefault.jpg',
+        videoId: 'HQkjP_DqgdQ',
+        duration: '12:37',
+        date: 'June 22, 2023',
+        category: 'Behind the Scenes'
+    },
+    {
+        id: 3,
+        title: 'How to Prepare Your Devices for Recycling',
+        description: 'Learn the steps to properly prepare your electronic devices before recycling them.',
+        thumbnail: 'https://img.youtube.com/vi/0JZey9GJQP0/maxresdefault.jpg',
+        videoId: '0JZey9GJQP0',
+        duration: '6:15',
+        date: 'July 5, 2023',
+        category: 'How-to'
+    },
+    {
+        id: 4,
+        title: 'The Hidden Value in E-Waste',
+        description: 'Discover the valuable materials contained in electronic waste and how they can be recovered.',
+        thumbnail: 'https://img.youtube.com/vi/zU62hh3DBfY/maxresdefault.jpg',
+        videoId: 'zU62hh3DBfY',
+        duration: '9:42',
+        date: 'August 18, 2023',
+        category: 'Education'
+    },
+    {
+        id: 5,
+        title: 'E-Waste and the Circular Economy',
+        description: 'How the principles of circular economy can be applied to electronic waste management.',
+        thumbnail: 'https://img.youtube.com/vi/JXDrIvShZKU/maxresdefault.jpg',
+        videoId: 'JXDrIvShZKU',
+        duration: '15:08',
+        date: 'September 3, 2023',
+        category: 'Sustainability'
+    },
+    {
+        id: 6,
+        title: 'DIY Electronics Repair: Extending Device Lifespan',
+        description: 'Basic repair techniques to help your electronic devices last longer and reduce e-waste.',
+        thumbnail: 'https://img.youtube.com/vi/Kv5fSBfnue0/maxresdefault.jpg',
+        videoId: 'Kv5fSBfnue0',
+        duration: '18:22',
+        date: 'October 12, 2023',
+        category: 'How-to'
+    }
+];
+
 // Education index page
 exports.getEducationIndex = (req, res) => {
     res.render('pages/education/index', {
@@ -89,9 +153,9 @@ exports.getResources = (req, res) => {
 
 // Articles list page
 exports.getArticles = (req, res) => {
-    res.render('pages/education/articles', {
+    res.render('pages/articles', {
         title: 'Articles - E-Waste Management',
-        path: '/education/articles',
+        path: '/articles',
         articles: articles
     });
 };
@@ -101,9 +165,9 @@ exports.getArticleDetail = (req, res) => {
     const article = articles.find(a => a.slug === req.params.slug);
 
     if (!article) {
-        return res.status(404).render('pages/error', {
+        return res.status(404).render('pages/404', {
             title: 'Article Not Found',
-            path: '/education/articles',
+            path: '/articles',
             error: {
                 status: 404,
                 message: 'The article you are looking for does not exist.'
@@ -114,9 +178,9 @@ exports.getArticleDetail = (req, res) => {
     // Get related articles (exclude current)
     const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 2);
 
-    res.render('pages/education/article-detail', {
+    res.render('pages/article-detail', {
         title: `${article.title} - E-Waste Management`,
-        path: '/education/articles',
+        path: '/articles',
         article: article,
         relatedArticles: relatedArticles
     });
@@ -126,6 +190,7 @@ exports.getArticleDetail = (req, res) => {
 exports.getVideos = (req, res) => {
     res.render('pages/videos', {
         title: 'Educational Videos - E-Waste Management',
-        path: '/education/videos'
+        path: '/videos',
+        videos: videos || []
     });
 };

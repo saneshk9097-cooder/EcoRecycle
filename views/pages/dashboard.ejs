@@ -1,142 +1,188 @@
 <%- include('../partials/header') %>
 
-<div class="container">
-  <div class="row mb-4">
-    <div class="col-lg-8">
-      <h1 class="display-5 mb-3">Welcome, User!</h1>
-      <p class="lead">Manage your e-waste recycling activities and track your environmental impact.</p>
-    </div>
-    <div class="col-lg-4 text-lg-end d-flex align-items-center justify-content-lg-end">
-      <a href="/logout" class="btn btn-outline-danger">
-        <i class="fas fa-sign-out-alt me-2"></i> Logout
-      </a>
-    </div>
+<div class="row mb-5 mt-2">
+  <div class="col-lg-8">
+    <h1 class="display-6 mb-2 fw-extrabold">Welcome, <%= user.firstName %>!</h1>
+    <p class="text-muted lead mb-0">Track your environmental impact and manage scheduled e-waste pickups.</p>
   </div>
+  <div class="col-lg-4 text-lg-end d-flex align-items-center justify-content-lg-end mt-3 mt-lg-0">
+    <a href="/recycling/pickup" class="btn btn-success me-2">
+      <i class="fas fa-plus me-2"></i> New Pickup
+    </a>
+    <a href="/logout" class="btn btn-outline-danger">
+      <i class="fas fa-sign-out-alt me-2"></i> Logout
+    </a>
+  </div>
+</div>
 
-  <!-- Dashboard Stats -->
-  <div class="row g-4 mb-5">
-    <div class="col-md-3">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body text-center">
-          <div class="display-4 text-success mb-2">0</div>
-          <p class="text-muted mb-0">Pickups Scheduled</p>
-        </div>
+<!-- Dashboard Stats Grid -->
+<div class="row g-4 mb-5">
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-icon success bg-success bg-opacity-10 text-success">
+        <i class="fas fa-calendar-check"></i>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body text-center">
-          <div class="display-4 text-success mb-2">0</div>
-          <p class="text-muted mb-0">Items Recycled</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body text-center">
-          <div class="display-4 text-success mb-2">0</div>
-          <p class="text-muted mb-0">CO₂ Saved (kg)</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body text-center">
-          <div class="display-4 text-success mb-2">0</div>
-          <p class="text-muted mb-0">Reward Points</p>
-        </div>
+      <div>
+        <div class="stat-number"><%= stats.pickupsCount %></div>
+        <div class="stat-label">Pickups Booked</div>
       </div>
     </div>
   </div>
-
-  <div class="row g-4">
-    <!-- Upcoming Pickups -->
-    <div class="col-lg-6">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-header bg-white border-0">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="h5 mb-0">Upcoming Pickups</h2>
-            <a href="/recycling/pickup" class="btn btn-sm btn-outline-success">Schedule New</a>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="text-center py-5">
-            <i class="fas fa-calendar-alt text-muted fa-3x mb-3"></i>
-            <p class="mb-0">You don't have any upcoming pickups scheduled.</p>
-            <a href="/recycling/pickup" class="btn btn-success mt-3">Schedule a Pickup</a>
-          </div>
-        </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-icon success bg-success bg-opacity-10 text-success">
+        <i class="fas fa-laptop-house"></i>
+      </div>
+      <div>
+        <div class="stat-number"><%= stats.itemsRecycled %></div>
+        <div class="stat-label">Items Recycled</div>
       </div>
     </div>
-
-    <!-- Recent Activity -->
-    <div class="col-lg-6">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-header bg-white border-0">
-          <h2 class="h5 mb-0">Recent Activity</h2>
-        </div>
-        <div class="card-body">
-          <div class="text-center py-5">
-            <i class="fas fa-history text-muted fa-3x mb-3"></i>
-            <p class="mb-0">No recent activity to display.</p>
-          </div>
-        </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-icon success bg-success bg-opacity-10 text-success">
+        <i class="fas fa-leaf"></i>
+      </div>
+      <div>
+        <div class="stat-number"><%= stats.co2Saved %> <span class="small text-muted" style="font-size: 0.8rem; font-weight: 500;">kg</span></div>
+        <div class="stat-label">CO₂ Saved</div>
       </div>
     </div>
-
-    <!-- Account Settings -->
-    <div class="col-lg-6">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-header bg-white border-0">
-          <h2 class="h5 mb-0">Account Settings</h2>
-        </div>
-        <div class="card-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item px-0">
-              <a href="/profile" class="text-decoration-none d-flex justify-content-between align-items-center">
-                <span><i class="fas fa-user-circle me-2"></i> Edit Profile</span>
-                <i class="fas fa-chevron-right text-muted"></i>
-              </a>
-            </li>
-            <li class="list-group-item px-0">
-              <a href="/change-password" class="text-decoration-none d-flex justify-content-between align-items-center">
-                <span><i class="fas fa-lock me-2"></i> Change Password</span>
-                <i class="fas fa-chevron-right text-muted"></i>
-              </a>
-            </li>
-            <li class="list-group-item px-0">
-              <a href="/notification-settings" class="text-decoration-none d-flex justify-content-between align-items-center">
-                <span><i class="fas fa-bell me-2"></i> Notification Settings</span>
-                <i class="fas fa-chevron-right text-muted"></i>
-              </a>
-            </li>
-            <li class="list-group-item px-0">
-              <a href="/address-book" class="text-decoration-none d-flex justify-content-between align-items-center">
-                <span><i class="fas fa-address-book me-2"></i> Address Book</span>
-                <i class="fas fa-chevron-right text-muted"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-icon success bg-success bg-opacity-10 text-success">
+        <i class="fas fa-award"></i>
       </div>
-    </div>
-
-    <!-- Environmental Impact -->
-    <div class="col-lg-6">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-header bg-white border-0">
-          <h2 class="h5 mb-0">Your Environmental Impact</h2>
-        </div>
-        <div class="card-body">
-          <div class="text-center py-5">
-            <i class="fas fa-leaf text-success fa-3x mb-3"></i>
-            <p class="mb-0">Start recycling to see your environmental impact!</p>
-            <a href="/education/facts" class="btn btn-outline-success mt-3">Learn More</a>
-          </div>
-        </div>
+      <div>
+        <div class="stat-number"><%= stats.rewardPoints %></div>
+        <div class="stat-label">Reward Points</div>
       </div>
     </div>
   </div>
 </div>
 
-<%- include('../partials/footer') %> 
+<div class="row g-4 mb-5">
+  <!-- Left Side: Scheduled Pickups -->
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm h-100">
+      <div class="card-header bg-white border-0 py-3">
+        <h2 class="h5 mb-0 fw-bold">Recent Pickups</h2>
+      </div>
+      <div class="card-body p-0">
+        <% if (pickups && pickups.length > 0) { %>
+          <div class="table-responsive">
+            <table class="table-premium align-middle">
+              <thead>
+                <tr>
+                  <th>Scheduled Date</th>
+                  <th>Items</th>
+                  <th>City</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% pickups.forEach(pickup => { %>
+                  <tr>
+                    <td>
+                      <div class="fw-bold"><%= new Date(pickup.pickupDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %></div>
+                      <div class="small text-muted"><%= pickup.pickupTime %></div>
+                    </td>
+                    <td>
+                      <div class="fw-semibold text-wrap" style="max-width: 200px;">
+                        <%= pickup.items.join(', ') %>
+                      </div>
+                      <% if (pickup.itemDetails) { %>
+                        <div class="small text-muted text-truncate text-wrap" style="max-width: 200px;"><%= pickup.itemDetails %></div>
+                      <% } %>
+                    </td>
+                    <td><%= pickup.city %></td>
+                    <td>
+                      <% if (pickup.status === 'Pending') { %>
+                        <span class="badge bg-warning">Pending</span>
+                      <% } else if (pickup.status === 'Confirmed') { %>
+                        <span class="badge bg-success bg-opacity-10 text-success">Confirmed</span>
+                      <% } else if (pickup.status === 'Completed') { %>
+                        <span class="badge bg-success">Completed</span>
+                      <% } else { %>
+                        <span class="badge bg-light">Cancelled</span>
+                      <% } %>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="text-center py-5">
+            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <i class="fas fa-calendar-alt text-muted fa-2x"></i>
+            </div>
+            <h4 class="h6 mb-2">No Scheduled Pickups</h4>
+            <p class="text-muted small px-4 mb-4">You have not scheduled any pickups yet. Let's send your first e-waste batch to recycling.</p>
+            <a href="/recycling/pickup" class="btn btn-success btn-sm px-4">Schedule a Pickup</a>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: User Profile & Quick Options -->
+  <div class="col-lg-4">
+    <div class="row g-4">
+      
+      <!-- Account Info -->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white border-0 py-3">
+            <h2 class="h5 mb-0 fw-bold">My Profile Details</h2>
+          </div>
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center font-bold fs-4 me-3" style="width: 54px; height: 54px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%) !important;">
+                <%= user.firstName.charAt(0) %><%= user.lastName.charAt(0) %>
+              </div>
+              <div>
+                <h4 class="h6 mb-0 fw-bold"><%= user.firstName %> <%= user.lastName %></h4>
+                <p class="small text-muted mb-0">@<%= user.username %></p>
+              </div>
+            </div>
+            
+            <ul class="list-group list-group-flush" style="font-size: 0.85rem;">
+              <li class="list-group-item d-flex justify-content-between px-0 py-2 bg-transparent">
+                <span class="text-muted">Email</span>
+                <span class="fw-semibold"><%= user.email %></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between px-0 py-2 bg-transparent">
+                <span class="text-muted">Phone</span>
+                <span class="fw-semibold"><%= user.phone || 'N/A' %></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between px-0 py-2 bg-transparent">
+                <span class="text-muted">Location</span>
+                <span class="fw-semibold"><%= user.city %>, <%= user.state || 'N/A' %></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Environmental Impact Tips -->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);">
+          <div class="card-body p-4 text-white">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fas fa-leaf fs-3 text-success me-2"></i>
+              <h3 class="h6 mb-0 text-white fw-bold">Did you know?</h3>
+            </div>
+            <p class="small mb-3 text-white opacity-75">Recycling 1 million laptops saves energy equivalent to the electricity used by over 3,500 homes in a year.</p>
+            <a href="/education/facts" class="btn btn-light btn-sm text-success w-100 fw-bold">Learn More Facts</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,49 +1,46 @@
 <%- include('../partials/header') %>
 
-<div class="container">
-  <div class="row mb-5">
-    <div class="col-lg-8 mx-auto text-center">
-      <h1 class="display-4 mb-4">Videos</h1>
-      <p class="lead">Watch informative videos about e-waste management, recycling processes, and sustainable practices.</p>
+<div class="row mb-5 mt-2">
+  <div class="col-lg-8 mx-auto text-center">
+    <h1 class="display-5 fw-extrabold mb-3">Educational Videos</h1>
+    <p class="text-muted lead">Watch documentaries, interviews, and visual guides about electronic recycling processes.</p>
+  </div>
+</div>
+
+<!-- Category Filter -->
+<div class="row mb-5">
+  <div class="col-12 text-center">
+    <div class="d-inline-flex flex-wrap justify-content-center gap-2 bg-light border p-2 rounded-pill shadow-sm" style="border-radius: 50rem !important;">
+      <button class="btn btn-sm btn-success px-4 rounded-pill active" data-category="all" style="border-radius: 50rem !important;">All</button>
+      <button class="btn btn-sm btn-outline-success px-4 rounded-pill border-0" data-category="Education" style="border-radius: 50rem !important;">Education</button>
+      <button class="btn btn-sm btn-outline-success px-4 rounded-pill border-0" data-category="How-to" style="border-radius: 50rem !important;">How-to</button>
+      <button class="btn btn-sm btn-outline-success px-4 rounded-pill border-0" data-category="Behind the Scenes" style="border-radius: 50rem !important;">Behind the Scenes</button>
+      <button class="btn btn-sm btn-outline-success px-4 rounded-pill border-0" data-category="Sustainability" style="border-radius: 50rem !important;">Sustainability</button>
     </div>
   </div>
+</div>
 
-  <!-- Category Filter -->
-  <div class="row mb-4">
-    <div class="col-12">
-      <div class="d-flex flex-wrap justify-content-center gap-2">
-        <button class="btn btn-outline-success active" data-category="all">All</button>
-        <button class="btn btn-outline-success" data-category="Education">Education</button>
-        <button class="btn btn-outline-success" data-category="How-to">How-to</button>
-        <button class="btn btn-outline-success" data-category="Behind the Scenes">Behind the Scenes</button>
-        <button class="btn btn-outline-success" data-category="Sustainability">Sustainability</button>
-      </div>
-    </div>
-  </div>
-
+<% if (typeof videos !== 'undefined' && videos && videos.length > 0) { %>
   <!-- Featured Video -->
-  <div class="row mb-5">
+  <% const featuredVideo = videos[0]; %>
+  <div class="row mb-5 fade-in">
     <div class="col-12">
-      <div class="card border-0 shadow-sm">
+      <div class="card border-0 shadow-sm overflow-hidden">
         <div class="card-body p-0">
           <div class="row g-0">
             <div class="col-lg-8">
               <div class="ratio ratio-16x9">
-                <iframe src="https://www.youtube.com/embed/ITwYEPCKFkM" title="The E-Waste Crisis Explained" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/<%= featuredVideo.videoId %>" title="<%= featuredVideo.title %>" allowfullscreen class="border-0"></iframe>
               </div>
             </div>
-            <div class="col-lg-4">
-              <div class="p-4">
-                <span class="badge bg-success mb-2">Featured</span>
-                <h2 class="h4 mb-3">The E-Waste Crisis Explained</h2>
-                <p>An overview of the global e-waste problem and its environmental impact. Learn about the scale of the issue and what can be done to address it.</p>
-                <div class="d-flex align-items-center text-muted">
-                  <div class="me-3">
-                    <i class="fas fa-calendar-alt me-1"></i> May 10, 2023
-                  </div>
-                  <div>
-                    <i class="fas fa-clock me-1"></i> 8:24
-                  </div>
+            <div class="col-lg-4 d-flex align-items-center">
+              <div class="p-4 p-lg-5">
+                <span class="badge bg-success mb-3">Featured Video</span>
+                <h2 class="h4 fw-extrabold mb-3"><%= featuredVideo.title %></h2>
+                <p class="text-muted small mb-4"><%= featuredVideo.description %></p>
+                <div class="d-flex align-items-center text-muted small">
+                  <div class="me-4"><i class="fas fa-calendar-alt me-2 text-primary"></i> <%= featuredVideo.date %></div>
+                  <div><i class="fas fa-clock me-2 text-primary"></i> <%= featuredVideo.duration %> min</div>
                 </div>
               </div>
             </div>
@@ -57,41 +54,41 @@
   <div class="row g-4 mb-5">
     <% videos.forEach((video, index) => { %>
       <% if (index > 0) { %>
-        <div class="col-md-6 col-lg-4 video-card" data-category="<%= video.category %>">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="position-relative">
-              <img src="<%= video.thumbnail %>" class="card-img-top" alt="<%= video.title %>">
+        <div class="col-md-6 col-lg-4 video-card fade-in" data-category="<%= video.category %>">
+          <div class="card h-100 border-0 shadow-sm card-hover">
+            <div class="position-relative overflow-hidden">
+              <img src="<%= video.thumbnail %>" class="card-img-top" alt="<%= video.title %>" style="height: 200px; object-fit: cover;">
               <a href="#videoModal<%= video.id %>" data-bs-toggle="modal" class="position-absolute top-50 start-50 translate-middle text-white">
-                <div class="bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                  <i class="fas fa-play fa-lg"></i>
+                <div class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-lg" style="width: 54px; height: 54px; background-color: var(--primary) !important; transition: all 0.2s ease;">
+                  <i class="fas fa-play text-white ms-1"></i>
                 </div>
               </a>
-              <span class="position-absolute bottom-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded-pill">
+              <span class="position-absolute bottom-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded-pill small" style="font-size: 0.75rem; background-color: rgba(15,23,42,0.85) !important;">
                 <i class="fas fa-clock me-1"></i> <%= video.duration %>
               </span>
             </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
                 <span class="badge bg-success"><%= video.category %></span>
                 <small class="text-muted"><%= video.date %></small>
               </div>
-              <h3 class="card-title h5"><%= video.title %></h3>
-              <p class="card-text"><%= video.description %></p>
+              <h3 class="h6 fw-bold mb-2"><%= video.title %></h3>
+              <p class="text-muted small mb-0"><%= video.description %></p>
             </div>
           </div>
         </div>
 
         <!-- Video Modal -->
         <div class="modal fade" id="videoModal<%= video.id %>" tabindex="-1" aria-labelledby="videoModalLabel<%= video.id %>" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: var(--radius-md);">
               <div class="modal-header">
-                <h5 class="modal-title" id="videoModalLabel<%= video.id %>"><%= video.title %></h5>
+                <h5 class="modal-title fw-bold" id="videoModalLabel<%= video.id %>"><%= video.title %></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body p-0">
                 <div class="ratio ratio-16x9">
-                  <iframe src="https://www.youtube.com/embed/<%= video.videoId %>" title="<%= video.title %>" allowfullscreen></iframe>
+                  <iframe src="https://www.youtube.com/embed/<%= video.videoId %>" title="<%= video.title %>" allowfullscreen class="border-0"></iframe>
                 </div>
               </div>
             </div>
@@ -99,48 +96,64 @@
         </div>
       <% } %>
     <% }) %>
-  </div>
-
-  <!-- Call to Action -->
-  <div class="py-5 bg-success text-white rounded-3 mb-5">
-    <div class="container text-center">
-      <h2 class="mb-3">Want to Learn More?</h2>
-      <p class="lead mb-4">Check out our educational resources and articles about e-waste management.</p>
-      <div class="d-flex flex-wrap justify-content-center gap-3">
-        <a href="/articles" class="btn btn-light btn-lg">Read Articles</a>
-        <a href="/education" class="btn btn-outline-light btn-lg">Explore Resources</a>
+    
+    <!-- No videos found in selected category -->
+    <div id="no-videos-category" class="col-12 text-center py-5" style="display: none;">
+      <div class="mb-3">
+        <i class="fas fa-video-slash text-muted" style="font-size: 3rem;"></i>
       </div>
+      <h4 class="fw-bold">No Videos Found</h4>
+      <p class="text-muted">There are no videos under this category at the moment.</p>
     </div>
   </div>
-</div>
+<% } else { %>
+  <div class="row my-5 py-5 text-center fade-in">
+    <div class="col-12">
+      <i class="fas fa-video-slash text-muted mb-4" style="font-size: 4rem;"></i>
+      <h3 class="fw-bold">No Videos Available</h3>
+      <p class="text-muted">We couldn't find any educational videos at the moment. Please check back later.</p>
+    </div>
+  </div>
+<% } %>
 
-<!-- JavaScript for category filtering -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('[data-category]');
     const videoCards = document.querySelectorAll('.video-card');
+    const noVideosMsg = document.getElementById('no-videos-category');
     
     filterButtons.forEach(button => {
       button.addEventListener('click', function() {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Remove active class and outline/background classes
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'btn-success');
+          btn.classList.add('btn-outline-success');
+        });
         
         // Add active class to clicked button
-        this.classList.add('active');
+        this.classList.add('active', 'btn-success');
+        this.classList.remove('btn-outline-success');
         
         const category = this.getAttribute('data-category');
+        let visibleCount = 0;
         
-        // Show/hide videos based on category
+        // Show/hide videos
         videoCards.forEach(card => {
           if (category === 'all' || card.getAttribute('data-category') === category) {
             card.style.display = 'block';
+            card.classList.add('fade-in');
+            visibleCount++;
           } else {
             card.style.display = 'none';
           }
         });
+
+        if (noVideosMsg) {
+          noVideosMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
       });
     });
   });
 </script>
 
-<%- include('../partials/footer') %> 
+<%- include('../partials/footer') %>

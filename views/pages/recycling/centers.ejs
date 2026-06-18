@@ -1,142 +1,99 @@
 <%- include('../../partials/header') %>
 
-<div class="container">
-  <div class="row mb-5">
-    <div class="col-lg-8 mx-auto text-center">
-      <h1 class="display-4 mb-4">Recycling Centers</h1>
-      <p class="lead">Find certified e-waste recycling centers near you for safe and responsible disposal.</p>
-    </div>
+<div class="row mb-5 mt-2">
+  <div class="col-lg-8 mx-auto text-center">
+    <h1 class="display-5 fw-extrabold mb-3">Recycling Centers</h1>
+    <p class="text-muted lead">Find certified drop-off centers in your state for proper and safe electronic waste recycling.</p>
   </div>
-
-  <!-- Search and Filter Section -->
-  <section class="mb-5">
-    <div class="card border-0 shadow-sm">
-      <div class="card-body p-4">
-        <h2 class="h4 mb-4">Find a Recycling Center</h2>
-        <form class="row g-3">
-          <div class="col-md-6">
-            <label for="location" class="form-label">Location</label>
-            <input type="text" class="form-control" id="location" placeholder="Enter city, state, or zip code">
-          </div>
-          <div class="col-md-4">
-            <label for="itemType" class="form-label">Item Type</label>
-            <select class="form-select" id="itemType">
-              <option value="" selected>All Items</option>
-              <option value="computers">Computers & Laptops</option>
-              <option value="phones">Mobile Phones & Tablets</option>
-              <option value="tvs">TVs & Monitors</option>
-              <option value="batteries">Batteries</option>
-              <option value="appliances">Small Appliances</option>
-            </select>
-          </div>
-          <div class="col-md-2 d-flex align-items-end">
-            <button type="submit" class="btn btn-success w-100">Search</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Centers List Section -->
-  <section class="mb-5">
-    <h2 class="h4 mb-4">Available Recycling Centers</h2>
-    
-    <% centers.forEach(center => { %>
-      <div class="card border-0 shadow-sm mb-4">
-        <div class="card-body p-4">
-          <div class="row">
-            <div class="col-md-8">
-              <h3 class="h5 mb-2"><%= center.name %></h3>
-              <p class="mb-2"><i class="fas fa-map-marker-alt text-success me-2"></i> <%= center.address %></p>
-              <p class="mb-2"><i class="fas fa-phone text-success me-2"></i> <%= center.phone %></p>
-              <p class="mb-3"><i class="fas fa-clock text-success me-2"></i> <%= center.hours %></p>
-              
-              <h4 class="h6 mb-2">Accepted Items:</h4>
-              <div class="mb-3">
-                <% center.acceptedItems.forEach(item => { %>
-                  <span class="badge bg-light text-dark border me-2 mb-2 py-2 px-3"><%= item %></span>
-                <% }) %>
-              </div>
-            </div>
-            <div class="col-md-4 d-flex flex-column justify-content-between">
-              <div class="text-md-end mb-3 mb-md-0">
-                <span class="badge bg-success mb-2">Certified Recycler</span>
-              </div>
-              <div class="d-grid gap-2">
-                <a href="https://maps.google.com/?q=<%= encodeURIComponent(center.address) %>" target="_blank" class="btn btn-outline-success">
-                  <i class="fas fa-directions me-2"></i> Get Directions
-                </a>
-                <a href="tel:<%= center.phone.replace(/[^0-9]/g, '') %>" class="btn btn-outline-secondary">
-                  <i class="fas fa-phone me-2"></i> Call
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% }) %>
-  </section>
-
-  <!-- Map Section -->
-  <section class="mb-5">
-    <h2 class="h4 mb-4">Centers Map</h2>
-    <div class="card border-0 shadow-sm">
-      <div class="card-body p-0">
-        <div class="ratio ratio-21x9">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sca!4v1619120778521!5m2!1sen!2sca" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tips Section -->
-  <section class="py-5 bg-light rounded-3 mb-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Tips for Recycling Center Visits</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <div class="text-success mb-3">
-                <i class="fas fa-shield-alt fa-2x"></i>
-              </div>
-              <h3 class="h5">Data Security</h3>
-              <p>Before recycling computers, phones, or storage devices, back up important data and perform a factory reset or secure wipe to protect your personal information.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <div class="text-success mb-3">
-                <i class="fas fa-box fa-2x"></i>
-              </div>
-              <h3 class="h5">Proper Packaging</h3>
-              <p>Transport items in secure packaging to prevent damage. Keep batteries separate and tape the terminals to prevent short circuits.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <div class="text-success mb-3">
-                <i class="fas fa-clipboard-list fa-2x"></i>
-              </div>
-              <h3 class="h5">Documentation</h3>
-              <p>Ask for a receipt or certificate of recycling, especially for business equipment or items containing sensitive data.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="text-center mb-5">
-    <h2 class="h4 mb-4">Can't make it to a recycling center?</h2>
-    <p class="lead mb-4">We offer convenient pickup services for your e-waste items.</p>
-    <a href="/recycling/pickup" class="btn btn-success btn-lg">Schedule a Pickup</a>
-  </section>
 </div>
 
-<%- include('../../partials/footer') %> 
+<!-- Search and Filter Section -->
+<section class="mb-5 fade-in">
+  <div class="card border-0 shadow-sm p-4">
+    <div class="card-body">
+      <h2 class="h5 fw-bold mb-3"><i class="fas fa-search text-success me-2"></i>Find a Recycling Center</h2>
+      <form class="row g-3">
+        <div class="col-md-6">
+          <label for="location" class="form-label">Location</label>
+          <div class="input-group-premium">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" class="form-control" id="location" placeholder="Enter city, state, or pincode">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="itemType" class="form-label">Accepted E-Waste Item Category</label>
+          <select class="form-select" id="itemType">
+            <option value="" selected>All Items</option>
+            <option value="computers">Computers & Laptops</option>
+            <option value="phones">Mobile Phones & Tablets</option>
+            <option value="tvs">TVs & Monitors</option>
+            <option value="batteries">Batteries</option>
+            <option value="appliances">Small Appliances</option>
+          </select>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+          <button type="submit" class="btn btn-success w-100 py-2">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Centers List Section -->
+<section class="mb-5 fade-in">
+  <h2 class="h5 fw-bold mb-4">Available Drop-off Facilities</h2>
+  
+  <% centers.forEach(center => { %>
+    <div class="card border-0 shadow-sm mb-4 card-hover">
+      <div class="card-body p-4">
+        <div class="row g-3">
+          <!-- Info -->
+          <div class="col-lg-8">
+            <div class="d-flex align-items-start mb-3 flex-wrap">
+              <h3 class="h5 fw-bold mb-1 me-3 text-dark"><%= center.name %></h3>
+              <span class="badge bg-success mt-1">Certified Recycler</span>
+            </div>
+            
+            <p class="text-muted small mb-2"><i class="fas fa-map-marker-alt text-success me-2"></i> <%= center.address %></p>
+            <p class="text-muted small mb-2"><i class="fas fa-phone text-success me-2"></i> <%= center.phone %></p>
+            <p class="text-muted small mb-3"><i class="fas fa-clock text-success me-2"></i> <%= center.hours %></p>
+            
+            <h4 class="h6 fw-bold mb-2 text-dark">Accepted Items:</h4>
+            <div class="d-flex flex-wrap gap-1">
+              <% center.acceptedItems.forEach(item => { %>
+                <span class="badge bg-light text-dark border py-2 px-3" style="font-size: 0.75rem;"><%= item %></span>
+              <% }) %>
+            </div>
+          </div>
+          
+          <!-- Actions -->
+          <div class="col-lg-4 d-flex flex-column justify-content-between align-items-lg-end text-start text-lg-end">
+            <div class="d-grid gap-2 w-100 max-width-250 mt-3 mt-lg-0">
+              <a href="/recycling/centers/<%= center.id %>" class="btn btn-success"><i class="fas fa-info-circle me-2"></i> View Details</a>
+              <a href="https://maps.google.com/?q=<%= encodeURIComponent(center.address) %>" target="_blank" class="btn btn-outline-success">
+                <i class="fas fa-directions me-2"></i> Get Directions
+              </a>
+              <a href="tel:<%= center.phone.replace(/[^0-9]/g, '') %>" class="btn btn-outline-secondary">
+                <i class="fas fa-phone me-2"></i> Call Facility
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</section>
+
+<!-- Maps Section -->
+<section class="mb-5 fade-in">
+  <h2 class="h5 fw-bold mb-4">Centers Map Integration</h2>
+  <div class="card border-0 shadow-sm overflow-hidden">
+    <div class="card-body p-0">
+      <div class="ratio ratio-21x9">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sca!4v1619120778521!5m2!1sen!2sca" allowfullscreen="" loading="lazy" class="border-0"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../../partials/footer') %>

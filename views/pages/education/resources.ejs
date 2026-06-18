@@ -1,310 +1,35 @@
 <%- include('../../partials/header') %>
 
-<div class="container">
-  <div class="row mb-5">
-    <div class="col-lg-8 mx-auto text-center">
-      <h1 class="display-4 mb-4">E-Waste Resources</h1>
-      <p class="lead">Explore these valuable resources to learn more about e-waste management and sustainable electronics.</p>
-    </div>
+<div class="row mb-5 mt-2">
+  <div class="col-lg-8 mx-auto text-center">
+    <h1 class="display-5 fw-extrabold mb-3">E-Waste Resources</h1>
+    <p class="text-muted lead">Directories, global coalitions, academic research reports, and international organizations.</p>
   </div>
-
-  <!-- Organizations Section -->
-  <section class="mb-5">
-    <h2 class="text-center mb-4">Organizations & Initiatives</h2>
-    <div class="row g-4">
-      <% resources.forEach(resource => { %>
-        <div class="col-md-6">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <h3 class="h5 mb-2"><%= resource.title %></h3>
-              <p class="mb-3"><%= resource.description %></p>
-              <a href="<%= resource.url %>" target="_blank" class="btn btn-outline-success">
-                <i class="fas fa-external-link-alt me-2"></i> Visit Website
-              </a>
-            </div>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-  </section>
-
-  <!-- Reports & Publications Section -->
-  <section class="mb-5 py-5 bg-light rounded-3">
-    <div class="container">
-      <h2 class="text-center mb-4">Reports & Publications</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <h3 class="h5 mb-2">Global E-waste Monitor</h3>
-              <p class="mb-3">Comprehensive reports on global e-waste statistics, trends, and management practices.</p>
-              <a href="https://www.itu.int/en/ITU-D/Environment/Pages/Spotlight/Global-Ewaste-Monitor-2020.aspx" target="_blank" class="btn btn-outline-success">
-                <i class="fas fa-file-pdf me-2"></i> Read Report
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <h3 class="h5 mb-2">Solving the E-waste Problem (StEP)</h3>
-              <p class="mb-3">Research and white papers on e-waste challenges and solutions from a global initiative.</p>
-              <a href="https://www.step-initiative.org/publications.html" target="_blank" class="btn btn-outline-success">
-                <i class="fas fa-file-pdf me-2"></i> View Publications
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <h3 class="h5 mb-2">Basel Convention</h3>
-              <p class="mb-3">International treaty guidelines and reports on the transboundary movement of hazardous wastes.</p>
-              <a href="http://www.basel.int/Implementation/TechnicalMatters/DevelopmentofTechnicalGuidelines/TechnicalGuidelines/tabid/8025/Default.aspx" target="_blank" class="btn btn-outline-success">
-                <i class="fas fa-file-pdf me-2"></i> View Guidelines
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Educational Resources Section -->
-  <section class="mb-5">
-    <h2 class="text-center mb-4">Educational Resources</h2>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="text-success mb-3">
-              <i class="fas fa-graduation-cap fa-2x"></i>
-            </div>
-            <h3 class="h5 mb-2">Courses & Webinars</h3>
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <a href="https://www.coursera.org/courses?query=electronic%20waste" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>Coursera E-Waste Courses</strong>
-                </a>
-                <p class="small mt-1">Online courses on e-waste management and circular economy principles.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.edx.org/search?q=waste%20management" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>edX Waste Management Courses</strong>
-                </a>
-                <p class="small mt-1">University-level courses on waste management including e-waste.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.youtube.com/results?search_query=e-waste+management+webinar" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>Recorded Webinars</strong>
-                </a>
-                <p class="small mt-1">Free webinars on various aspects of e-waste management.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="text-success mb-3">
-              <i class="fas fa-book fa-2x"></i>
-            </div>
-            <h3 class="h5 mb-2">Books & Guides</h3>
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <a href="https://www.amazon.com/s?k=electronic+waste+management+book" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>E-Waste Management Books</strong>
-                </a>
-                <p class="small mt-1">Comprehensive books on e-waste challenges and solutions.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.epa.gov/recycle/electronics-donation-and-recycling" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>EPA Electronics Recycling Guide</strong>
-                </a>
-                <p class="small mt-1">Official guidelines for electronics recycling from the Environmental Protection Agency.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.ifixit.com/Right-to-Repair/E-waste" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>iFixit E-Waste Resources</strong>
-                </a>
-                <p class="small mt-1">Guides and information on reducing e-waste through repair.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="text-success mb-3">
-              <i class="fas fa-film fa-2x"></i>
-            </div>
-            <h3 class="h5 mb-2">Documentaries & Videos</h3>
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <a href="https://www.youtube.com/watch?v=JXDrIvShZKU" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>"The E-Waste Tragedy"</strong>
-                </a>
-                <p class="small mt-1">Documentary exploring the global e-waste trade and its consequences.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.youtube.com/watch?v=0JZey9GJQP0" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>"Death by Design"</strong>
-                </a>
-                <p class="small mt-1">Documentary on the environmental and human costs of electronics manufacturing and disposal.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.ted.com/talks/kate_e_orff_oysters_garbage_and_glass" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>TED Talks on E-Waste</strong>
-                </a>
-                <p class="small mt-1">Thought-provoking talks on electronic waste and sustainable solutions.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Policy & Legislation Section -->
-  <section class="mb-5 py-5 bg-light rounded-3">
-    <div class="container">
-      <h2 class="text-center mb-4">Policy & Legislation Resources</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <h3 class="h5 mb-3">International Frameworks</h3>
-              <ul class="list-unstyled">
-                <li class="mb-3">
-                  <a href="http://www.basel.int/" target="_blank" class="text-decoration-none">
-                    <i class="fas fa-globe text-success me-2"></i>
-                    <strong>Basel Convention</strong>
-                  </a>
-                  <p class="small mt-1">International treaty controlling transboundary movements of hazardous wastes, including e-waste.</p>
-                </li>
-                <li class="mb-3">
-                  <a href="https://www.unep.org/explore-topics/resource-efficiency/what-we-do/cities/sustainable-consumption-and-production-policies" target="_blank" class="text-decoration-none">
-                    <i class="fas fa-globe text-success me-2"></i>
-                    <strong>UN Sustainable Consumption and Production</strong>
-                  </a>
-                  <p class="small mt-1">UN frameworks and policies related to sustainable consumption, including electronics.</p>
-                </li>
-                <li class="mb-3">
-                  <a href="https://www.itu.int/en/ITU-D/Climate-Change/Pages/ewaste/Pages/default.aspx" target="_blank" class="text-decoration-none">
-                    <i class="fas fa-globe text-success me-2"></i>
-                    <strong>ITU E-waste Coalition</strong>
-                  </a>
-                  <p class="small mt-1">International Telecommunication Union's initiatives on e-waste management.</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <h3 class="h5 mb-3">Regional & National Legislation</h3>
-              <ul class="list-unstyled">
-                <li class="mb-3">
-                  <a href="https://ec.europa.eu/environment/topics/waste-and-recycling/waste-electrical-and-electronic-equipment-weee_en" target="_blank" class="text-decoration-none">
-                    <i class="fas fa-gavel text-success me-2"></i>
-                    <strong>EU WEEE Directive</strong>
-                  </a>
-                  <p class="small mt-1">European Union legislation on Waste Electrical and Electronic Equipment.</p>
-                </li>
-                <li class="mb-3">
-                  <a href="https://www.epa.gov/hw/regulatory-exclusions-and-alternative-standards-hazardous-waste-electronics" target="_blank" class="text-decoration-none">
-                    <i class="fas fa-gavel text-success me-2"></i>
-                    <strong>US E-Waste Regulations</strong>
-                  </a>
-                  <p class="small mt-1">US Environmental Protection Agency regulations on electronic waste.</p>
-                </li>
-                <li class="mb-3">
-                  <a href="https://www.calrecycle.ca.gov/electronics" target="_blank" class="text-decoration-none">
-                    <i class="fas fa-gavel text-success me-2"></i>
-                    <strong>State-Level E-Waste Laws</strong>
-                  </a>
-                  <p class="small mt-1">Example of state-level e-waste legislation (California).</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tools & Calculators Section -->
-  <section class="mb-5">
-    <h2 class="text-center mb-4">Tools & Calculators</h2>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="text-success mb-3">
-              <i class="fas fa-calculator fa-2x"></i>
-            </div>
-            <h3 class="h5">E-Waste Footprint Calculator</h3>
-            <p>Calculate the environmental impact of your electronic devices and learn how to reduce it.</p>
-            <a href="https://www.theworldcounts.com/challenges/planet-earth/waste/electronic-waste-facts/story" target="_blank" class="btn btn-outline-success mt-2">
-              <i class="fas fa-external-link-alt me-2"></i> Try Calculator
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="text-success mb-3">
-              <i class="fas fa-map-marked-alt fa-2x"></i>
-            </div>
-            <h3 class="h5">Recycling Center Locator</h3>
-            <p>Find certified e-waste recycling centers near you using this interactive tool.</p>
-            <a href="https://search.earth911.com/?what=Electronics" target="_blank" class="btn btn-outline-success mt-2">
-              <i class="fas fa-external-link-alt me-2"></i> Find Centers
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="text-success mb-3">
-              <i class="fas fa-mobile-alt fa-2x"></i>
-            </div>
-            <h3 class="h5">Device Value Estimator</h3>
-            <p>Estimate the value of your used electronics for resale or trade-in programs.</p>
-            <a href="https://www.decluttr.com/" target="_blank" class="btn btn-outline-success mt-2">
-              <i class="fas fa-external-link-alt me-2"></i> Estimate Value
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="py-5 bg-success text-white rounded-3 mb-5">
-    <div class="container text-center">
-      <h2 class="mb-3">Knowledge Into Action</h2>
-      <p class="lead mb-4">Now that you have access to these resources, take the next step in responsible e-waste management.</p>
-      <div class="d-flex flex-wrap justify-content-center gap-3">
-        <a href="/recycling" class="btn btn-light btn-lg">Find Recycling Options</a>
-        <a href="/contact" class="btn btn-outline-light btn-lg">Contact Us</a>
-      </div>
-    </div>
-  </section>
 </div>
 
-<%- include('../../partials/footer') %> 
+<!-- Resources List -->
+<div class="row g-4 mb-5">
+  <% resources.forEach(resource => { %>
+    <div class="col-md-6 fade-in">
+      <div class="card h-100 border-0 shadow-sm p-4 card-hover">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex align-items-center mb-3">
+              <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 46px; height: 46px; flex-shrink: 0; background-color: var(--primary-subtle) !important;">
+                <i class="fas fa-external-link-alt text-primary" style="font-size: 0.9rem;"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-0 text-dark"><%= resource.title %></h3>
+            </div>
+            <p class="text-muted small mb-4"><%= resource.description %></p>
+          </div>
+          
+          <div class="border-top pt-3 mt-auto">
+            <a href="<%= resource.url %>" target="_blank" class="btn btn-sm btn-success px-4">Visit Organization <i class="fas fa-external-link-alt ms-1" style="font-size: 0.75rem;"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('../../partials/footer') %>

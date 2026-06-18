@@ -1,340 +1,38 @@
 <%- include('../../partials/header') %>
 
-<div class="container">
-  <div class="row mb-5">
-    <div class="col-lg-8 mx-auto text-center">
-      <h1 class="display-4 mb-4">E-Waste Reduction Tips</h1>
-      <p class="lead">Practical ways to reduce your electronic waste footprint and contribute to a more sustainable future.</p>
-    </div>
+<div class="row mb-5 mt-2">
+  <div class="col-lg-8 mx-auto text-center">
+    <h1 class="display-5 fw-extrabold mb-3">E-Waste Reduction Tips</h1>
+    <p class="text-muted lead">Practical and actionable tips you can follow at home or work to minimize electronic waste.</p>
   </div>
-
-  <!-- Tips Section -->
-  <section class="mb-5">
-    <div class="row g-4">
-      <% tips.forEach(tip => { %>
-        <div class="col-md-6">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <h2 class="h5 mb-3 text-success"><%= tip.title %></h2>
-              <p><%= tip.content %></p>
-            </div>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-  </section>
-
-  <!-- Circular Economy Section -->
-  <section class="mb-5 py-5 bg-light rounded-3">
-    <div class="container">
-      <h2 class="text-center mb-5">The Circular Economy Approach</h2>
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <div class="card border-0 shadow-sm">
-            <div class="card-body p-4">
-              <div class="text-center mb-4">
-                <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Circular Economy" class="img-fluid rounded-3 mb-4" style="max-height: 300px;">
-              </div>
-              <p>The circular economy model aims to eliminate waste and continually reuse resources. For electronics, this means:</p>
-              <div class="row g-4 mt-2">
-                <div class="col-md-4 text-center">
-                  <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
-                    <i class="fas fa-drafting-compass fa-2x"></i>
-                  </div>
-                  <h3 class="h6">Design</h3>
-                  <p class="small">Creating products that are durable, repairable, and recyclable</p>
-                </div>
-                <div class="col-md-4 text-center">
-                  <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
-                    <i class="fas fa-sync-alt fa-2x"></i>
-                  </div>
-                  <h3 class="h6">Use & Reuse</h3>
-                  <p class="small">Extending product lifespans through repair, refurbishment, and repurposing</p>
-                </div>
-                <div class="col-md-4 text-center">
-                  <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
-                    <i class="fas fa-recycle fa-2x"></i>
-                  </div>
-                  <h3 class="h6">Recover</h3>
-                  <p class="small">Recycling materials to create new products and minimize waste</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Practical Tips Section -->
-  <section class="mb-5">
-    <h2 class="text-center mb-4">Practical Tips by Device Type</h2>
-    
-    <!-- Computers & Laptops -->
-    <div class="card border-0 shadow-sm mb-4">
-      <div class="card-header bg-success text-white">
-        <h3 class="h5 mb-0">Computers & Laptops</h3>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Upgrade components</strong> instead of replacing the entire device. Adding RAM or switching to an SSD can significantly improve performance.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Clean regularly</strong> to prevent dust buildup that can cause overheating and component damage.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Consider lightweight operating systems</strong> for older machines that struggle with modern OS requirements.
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Use proper power settings</strong> to extend battery life and reduce wear on components.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Donate working computers</strong> to schools, nonprofits, or community centers when upgrading.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Repurpose old computers</strong> as media centers, network storage, or learning devices for children.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Mobile Phones & Tablets -->
-    <div class="card border-0 shadow-sm mb-4">
-      <div class="card-header bg-success text-white">
-        <h3 class="h5 mb-0">Mobile Phones & Tablets</h3>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Use protective cases and screen protectors</strong> to prevent damage from drops and scratches.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Follow proper charging practices</strong> to maximize battery lifespan.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Regularly clean storage</strong> by removing unused apps and files to maintain performance.
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Consider repair options</strong> for common issues like cracked screens or battery replacement.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Trade in or sell</strong> devices when upgrading to ensure they get reused.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Repurpose old phones</strong> as security cameras, remote controls, or dedicated music players.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Other Electronics -->
-    <div class="card border-0 shadow-sm">
-      <div class="card-header bg-success text-white">
-        <h3 class="h5 mb-0">Other Electronics</h3>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Maintain appliances</strong> with regular cleaning and servicing to extend their lifespan.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Choose energy-efficient models</strong> that often have better build quality and longer lifespans.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Research repair options</strong> before replacing devices that stop working.
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Use universal accessories</strong> when possible to reduce the need for multiple chargers and cables.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Consider renting or borrowing</strong> rarely used electronics instead of purchasing.
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong>Look for modular designs</strong> that allow for component replacement rather than whole-device replacement.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Buying Guide Section -->
-  <section class="mb-5 py-5 bg-light rounded-3">
-    <div class="container">
-      <h2 class="text-center mb-4">Sustainable Electronics Buying Guide</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <div class="text-success mb-3">
-                <i class="fas fa-search fa-2x"></i>
-              </div>
-              <h3 class="h5">Research Before Buying</h3>
-              <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> Check repairability scores</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> Read durability reviews</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> Look for energy efficiency ratings</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> Consider manufacturer's sustainability practices</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <div class="text-success mb-3">
-                <i class="fas fa-certificate fa-2x"></i>
-              </div>
-              <h3 class="h5">Look for Certifications</h3>
-              <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> ENERGY STAR</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> EPEAT (Electronic Product Environmental Assessment Tool)</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> TCO Certified</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> RoHS Compliance (Restriction of Hazardous Substances)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body">
-              <div class="text-success mb-3">
-                <i class="fas fa-tools fa-2x"></i>
-              </div>
-              <h3 class="h5">Consider Repairability</h3>
-              <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> Choose devices with replaceable batteries</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> Look for modular designs</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> Check availability of spare parts</li>
-                <li class="mb-2"><i class="fas fa-angle-right text-success me-2"></i> Consider manufacturer repair policies</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DIY Repair Resources -->
-  <section class="mb-5">
-    <h2 class="text-center mb-4">DIY Repair Resources</h2>
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <h3 class="h5 mb-3">Online Repair Guides</h3>
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <a href="https://www.ifixit.com/" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>iFixit</strong>
-                </a>
-                <p class="small mt-1">Comprehensive repair guides and tools for various electronic devices.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.youtube.com/results?search_query=electronics+repair" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>YouTube Repair Channels</strong>
-                </a>
-                <p class="small mt-1">Video tutorials for common electronic repairs.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.instructables.com/technology/" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>Instructables</strong>
-                </a>
-                <p class="small mt-1">Step-by-step instructions for repairs and upcycling projects.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="card-body">
-            <h3 class="h5 mb-3">Community Resources</h3>
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                <a href="https://repaircafe.org/en/" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>Repair Cafés</strong>
-                </a>
-                <p class="small mt-1">Community events where volunteers help repair broken items.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.reddit.com/r/fixit/" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>Online Forums</strong>
-                </a>
-                <p class="small mt-1">Communities like Reddit's r/fixit where you can ask for repair advice.</p>
-              </li>
-              <li class="mb-3">
-                <a href="https://www.meetup.com/find/?keywords=electronics" target="_blank" class="text-decoration-none">
-                  <i class="fas fa-link text-success me-2"></i>
-                  <strong>Local Maker Spaces</strong>
-                </a>
-                <p class="small mt-1">Community workshops that often offer tools and expertise for repairs.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="py-5 bg-success text-white rounded-3 mb-5">
-    <div class="container text-center">
-      <h2 class="mb-3">Ready to Reduce Your E-Waste?</h2>
-      <p class="lead mb-4">Start implementing these tips today and make a positive impact on the environment.</p>
-      <div class="d-flex flex-wrap justify-content-center gap-3">
-        <a href="/recycling" class="btn btn-light btn-lg">Find Recycling Options</a>
-        <a href="/education/resources" class="btn btn-outline-light btn-lg">Explore More Resources</a>
-      </div>
-    </div>
-  </section>
 </div>
 
-<%- include('../../partials/footer') %> 
+<!-- Tips Grid -->
+<div class="row g-4 mb-5">
+  <% tips.forEach((tip, index) => { %>
+    <div class="col-md-6 col-lg-4 fade-in">
+      <div class="card h-100 border-0 shadow-sm card-hover">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center fw-bold me-3" style="width: 48px; height: 48px; flex-shrink: 0; background-color: var(--primary-subtle) !important;">
+              <%= index + 1 %>
+            </div>
+            <h3 class="h6 fw-bold mb-0 text-dark"><%= tip.title %></h3>
+          </div>
+          <p class="text-muted small mb-0"><%= tip.content %></p>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<!-- Extra tip banner -->
+<div class="py-5 text-white rounded-3 shadow mb-5 fade-in" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);">
+  <div class="container px-4 text-center py-2">
+    <h2 class="text-white fw-bold mb-3">Extend Device Life First</h2>
+    <p class="lead text-white opacity-75 mb-4 max-width-600 mx-auto">Before discarding, see if upgrading component parts (like SSD storage or RAM modules) can speed up your computer.</p>
+    <a href="/articles" class="btn btn-light btn-lg text-success px-5 fw-bold shadow-sm">Read Device Care Articles</a>
+  </div>
+</div>
+
+<%- include('../../partials/footer') %>

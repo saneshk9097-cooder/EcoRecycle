@@ -2,7 +2,13 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
 require('dotenv').config();
+const dns=require("dns")
+dns.setServers([
+    '1.1.1.1',
+    '8.8.8.8'
+]);
 
 // Initialize Express app
 const app = express();
@@ -15,6 +21,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Session Configuration
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'eco_recycle_secret_key_123',
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Session user local middleware
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
 
 // Sample data for templates
 app.use((req, res, next) => {
@@ -161,14 +180,9 @@ app.use('/', indexRoutes);
 app.use('/recycling', recyclingRoutes);
 app.use('/education', educationRoutes);
 
-// Connect to MongoDB (commented out for now)
-mongoose.connect(process.env.MONGODB_URI)
-// {
-//   // useNewUrlParser: true,
-//   // useUnifiedTopology: true
-// }
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.log(err));
+// Connect to MongoDB
+const connectDB = require('./config/db');
+connectDB().catch(err => console.log('Database connection error:', err));
 
 // Error handling middleware
 app.use((req, res, next) => {

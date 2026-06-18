@@ -1,140 +1,69 @@
 <%- include('../partials/header') %>
 
-<div class="container">
-  <div class="row mb-4">
-    <div class="col-12">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item"><a href="/articles">Articles</a></li>
-          <li class="breadcrumb-item active" aria-current="page"><%= article.title %></li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-
-  <div class="row">
-    <!-- Main Content -->
-    <div class="col-lg-8">
-      <article>
-        <header class="mb-4">
-          <h1 class="display-5 mb-3"><%= article.title %></h1>
-          <div class="d-flex flex-wrap align-items-center text-muted mb-3">
-            <div class="me-3">
-              <i class="fas fa-user-circle me-1"></i> <%= article.author %>
+<div class="row g-4 mt-2 mb-5">
+  
+  <!-- Main Article Content -->
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm p-4">
+      <div class="card-body">
+        
+        <div class="mb-4">
+          <span class="badge bg-success mb-3"><%= article.category %></span>
+          <h1 class="h2 fw-extrabold mb-3 text-dark"><%= article.title %></h1>
+          
+          <div class="d-flex align-items-center text-muted small pb-3 border-bottom">
+            <div class="d-flex align-items-center me-4">
+              <i class="fas fa-user-edit me-2 text-primary"></i>
+              <span>By <%= article.author %></span>
             </div>
-            <div class="me-3">
-              <i class="fas fa-calendar-alt me-1"></i> <%= article.date %>
-            </div>
-            <div>
-              <i class="fas fa-tag me-1"></i> <%= article.category %>
+            <div class="d-flex align-items-center">
+              <i class="fas fa-calendar-alt me-2 text-primary"></i>
+              <span><%= article.date %></span>
             </div>
           </div>
-        </header>
-
-        <figure class="mb-4">
-          <img class="img-fluid rounded" src="<%= article.image %>" alt="<%= article.title %>">
-        </figure>
-
-        <div class="article-content">
+        </div>
+        
+        <img src="<%= article.image %>" class="img-fluid rounded-3 mb-4 w-100" style="max-height: 400px; object-fit: cover;" alt="<%= article.title %>">
+        
+        <div class="article-rich-text text-muted" style="font-size: 1.05rem; line-height: 1.8;">
           <%- article.content %>
         </div>
-
-        <!-- Social Share -->
-        <div class="mt-5 mb-5">
-          <h5>Share this article</h5>
-          <div class="d-flex gap-2">
-            <a href="#" class="btn btn-outline-primary">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="btn btn-outline-info">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="btn btn-outline-success">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="btn btn-outline-secondary">
-              <i class="fas fa-envelope"></i>
-            </a>
-            <a href="#" class="btn btn-outline-primary">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
+        
+        <div class="mt-5 pt-3 border-top d-flex justify-content-between align-items-center flex-wrap">
+          <a href="/articles" class="btn btn-outline-success"><i class="fas fa-arrow-left me-2"></i> Back to Articles</a>
+          <div class="d-flex gap-2 align-items-center mt-2 mt-sm-0">
+            <span class="small text-muted fw-bold">Share:</span>
+            <a href="#" class="btn btn-sm btn-outline-light text-dark border"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="btn btn-sm btn-outline-light text-dark border"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="btn btn-sm btn-outline-light text-dark border"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
-
-        <!-- Author Bio -->
-        <div class="card border-0 bg-light mb-5">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Author" class="rounded-circle me-3" width="80">
-              <div>
-                <h5 class="mb-1">About <%= article.author %></h5>
-                <p class="mb-0">Environmental scientist with 15+ years of experience in waste management. Passionate about finding sustainable solutions to the growing e-waste crisis.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+        
+      </div>
     </div>
-
-    <!-- Sidebar -->
-    <div class="col-lg-4">
-      <!-- Related Articles -->
-      <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-white border-0">
-          <h4 class="h5 mb-0">Related Articles</h4>
-        </div>
-        <div class="card-body">
+  </div>
+  
+  <!-- Related Articles Sidebar -->
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm p-4 mb-4">
+      <div class="card-body">
+        <h3 class="h5 fw-bold mb-4 border-bottom pb-2">Related Articles</h3>
+        
+        <% if (article.relatedArticles && article.relatedArticles.length > 0) { %>
           <% article.relatedArticles.forEach(related => { %>
-            <div class="row mb-3">
-              <div class="col-4">
-                <img src="<%= related.image %>" alt="<%= related.title %>" class="img-fluid rounded">
-              </div>
-              <div class="col-8">
-                <h5 class="h6 mb-1"><a href="/articles/<%= related.slug %>" class="text-decoration-none"><%= related.title %></a></h5>
-                <p class="small text-muted mb-0"><%= related.summary.substring(0, 60) %>...</p>
-              </div>
+            <div class="mb-4">
+              <img src="<%= related.image %>" class="img-fluid rounded-3 mb-2 w-100" style="height: 120px; object-fit: cover;" alt="<%= related.title %>">
+              <h4 class="h6 fw-bold mb-1"><a href="/articles/<%= related.slug %>" class="text-dark text-decoration-none hover-primary"><%= related.title %></a></h4>
+              <p class="text-muted small text-truncate" style="max-width: 250px;"><%= related.summary %></p>
             </div>
           <% }) %>
-        </div>
-      </div>
-
-      <!-- Categories -->
-      <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-white border-0">
-          <h4 class="h5 mb-0">Categories</h4>
-        </div>
-        <div class="card-body">
-          <div class="d-flex flex-wrap gap-2">
-            <a href="/articles?category=Education" class="badge bg-light text-dark text-decoration-none p-2">Education</a>
-            <a href="/articles?category=How-to" class="badge bg-light text-dark text-decoration-none p-2">How-to</a>
-            <a href="/articles?category=Technology" class="badge bg-light text-dark text-decoration-none p-2">Technology</a>
-            <a href="/articles?category=Policy" class="badge bg-light text-dark text-decoration-none p-2">Policy</a>
-            <a href="/articles?category=Social-Impact" class="badge bg-light text-dark text-decoration-none p-2">Social Impact</a>
-            <a href="/articles?category=Sustainability" class="badge bg-light text-dark text-decoration-none p-2">Sustainability</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Newsletter Signup -->
-      <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white border-0">
-          <h4 class="h5 mb-0">Subscribe</h4>
-        </div>
-        <div class="card-body">
-          <p class="small">Get the latest articles and updates delivered to your inbox.</p>
-          <form>
-            <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Your email address">
-            </div>
-            <div class="d-grid">
-              <button type="submit" class="btn btn-success">Subscribe</button>
-            </div>
-          </form>
-        </div>
+        <% } else { %>
+          <p class="text-muted small">No related articles found.</p>
+        <% } %>
+        
       </div>
     </div>
   </div>
 </div>
 
-<%- include('../partials/footer') %> 
+<%- include('../partials/footer') %>

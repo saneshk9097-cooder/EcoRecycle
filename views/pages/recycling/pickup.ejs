@@ -1,340 +1,349 @@
 <%- include('../../partials/header') %>
 
-<div class="container">
-  <div class="row mb-5">
-    <div class="col-lg-8 mx-auto text-center">
-      <h1 class="display-4 mb-4">Schedule a Pickup</h1>
-      <p class="lead">Can't make it to a recycling center? Let us pick up your e-waste items from your home or business.</p>
+<div class="row mb-5">
+  <div class="col-lg-8 mx-auto text-center">
+    <h1 class="display-5 fw-extrabold mb-3">Schedule a Pickup</h1>
+    <p class="text-muted lead">Can't make it to a recycling center? Let our team collect your e-waste directly from your home or office.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Left Side: Form -->
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm p-4">
+      <div class="card-body">
+        
+        <form action="/recycling/pickup" method="POST" class="needs-validation" novalidate>
+          
+          <!-- Contact Info -->
+          <div class="mb-4">
+            <h3 class="h5 mb-3 fw-bold border-bottom pb-2"><i class="fas fa-address-card text-success me-2"></i>Contact Details</h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-user"></i>
+                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John" required>
+                  <div class="invalid-feedback">Please provide your first name.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="lastName" class="form-label">Last Name</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-user"></i>
+                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe" required>
+                  <div class="invalid-feedback">Please provide your last name.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="john@example.com" required>
+                  <div class="invalid-feedback">Please provide a valid email.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone Number</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-phone"></i>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 98765 43210" required>
+                  <div class="invalid-feedback">Please provide your phone number.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Address Info -->
+          <div class="mb-4">
+            <h3 class="h5 mb-3 fw-bold border-bottom pb-2"><i class="fas fa-map-marker-alt text-success me-2"></i>Pickup Address</h3>
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="address" class="form-label">Street Address</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <input type="text" class="form-control" id="address" name="address" placeholder="Flat, Building name, Street address" required>
+                  <div class="invalid-feedback">Please provide your street address.</div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="city" class="form-label">City</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-city"></i>
+                  <input type="text" class="form-control" id="city" name="city" placeholder="Patna" required>
+                  <div class="invalid-feedback">Please provide your city.</div>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <label for="state" class="form-label">State</label>
+                <select class="form-select" id="state" name="state" required>
+                  <option value="" selected disabled>Select State</option>
+                  <option value="AN">Andaman and Nicobar Islands</option>
+                  <option value="AP">Andhra Pradesh</option>
+                  <option value="AR">Arunachal Pradesh</option>
+                  <option value="AS">Assam</option>
+                  <option value="BR">Bihar</option>
+                  <option value="CH">Chandigarh</option>
+                  <option value="CT">Chhattisgarh</option>
+                  <option value="DN">Dadra and Nagar Haveli and Daman and Diu</option>
+                  <option value="DL">Delhi</option>
+                  <option value="GA">Goa</option>
+                  <option value="GJ">Gujarat</option>
+                  <option value="HR">Haryana</option>
+                  <option value="HP">Himachal Pradesh</option>
+                  <option value="JK">Jammu and Kashmir</option>
+                  <option value="JH">Jharkhand</option>
+                  <option value="KA">Karnataka</option>
+                  <option value="KL">Kerala</option>
+                  <option value="LA">Ladakh</option>
+                  <option value="LD">Lakshadweep</option>
+                  <option value="MP">Madhya Pradesh</option>
+                  <option value="MH">Maharashtra</option>
+                  <option value="MN">Manipur</option>
+                  <option value="ML">Meghalaya</option>
+                  <option value="MZ">Mizoram</option>
+                  <option value="NL">Nagaland</option>
+                  <option value="OR">Odisha</option>
+                  <option value="PY">Puducherry</option>
+                  <option value="PB">Punjab</option>
+                  <option value="RJ">Rajasthan</option>
+                  <option value="SK">Sikkim</option>
+                  <option value="TN">Tamil Nadu</option>
+                  <option value="TG">Telangana</option>
+                  <option value="TR">Tripura</option>
+                  <option value="UP">Uttar Pradesh</option>
+                  <option value="UK">Uttarakhand</option>
+                  <option value="WB">West Bengal</option>
+                </select>
+                <div class="invalid-feedback">Please select your state.</div>
+              </div>
+              
+              <div class="col-md-2">
+                <label for="zip" class="form-label">Pincode</label>
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="800001" required>
+                <div class="invalid-feedback">Please provide your pincode.</div>
+              </div>
+              
+              <div class="col-12">
+                <label for="addressNotes" class="form-label">Address Notes (Optional)</label>
+                <textarea class="form-control" id="addressNotes" name="addressNotes" rows="2" placeholder="Apartment number, building name, special directions, etc."></textarea>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Items to Recycle -->
+          <div class="mb-4">
+            <h3 class="h5 mb-3 fw-bold border-bottom pb-2"><i class="fas fa-boxes text-success me-2"></i>Items to Recycle</h3>
+            <p class="small text-muted mb-3">Select the categories of electronic devices you want picked up:</p>
+            
+            <div class="row g-2 mb-3">
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="computers" name="items" value="Computers & Laptops">
+                    <label class="form-check-label fw-bold small" for="computers">Computers & Laptops</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="monitors" name="items" value="Monitors & Displays">
+                    <label class="form-check-label fw-bold small" for="monitors">Monitors & Displays</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="phones" name="items" value="Phones & Tablets">
+                    <label class="form-check-label fw-bold small" for="phones">Phones & Tablets</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="printers" name="items" value="Printers & Scanners">
+                    <label class="form-check-label fw-bold small" for="printers">Printers & Scanners</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="tvs" name="items" value="Televisions">
+                    <label class="form-check-label fw-bold small" for="tvs">Televisions</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="batteries" name="items" value="Batteries">
+                    <label class="form-check-label fw-bold small" for="batteries">Batteries</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="appliances" name="items" value="Small Appliances">
+                    <label class="form-check-label fw-bold small" for="appliances">Small Appliances</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="cables" name="items" value="Cables & Chargers">
+                    <label class="form-check-label fw-bold small" for="cables">Cables & Chargers</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4">
+                <div class="form-check card p-2 bg-light bg-opacity-50">
+                  <div>
+                    <input class="form-check-input ms-1 me-2" type="checkbox" id="other" name="items" value="Other Electronics">
+                    <label class="form-check-label fw-bold small" for="other">Other Electronics</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="itemDetails" class="form-label">Item Details (Quantities, models, etc.)</label>
+              <textarea class="form-control" id="itemDetails" name="itemDetails" rows="3" placeholder="Please list the estimated quantities and details of the devices you wish to recycle..." required></textarea>
+              <div class="invalid-feedback">Please describe the items you wish to recycle.</div>
+            </div>
+          </div>
+          
+          <!-- Date and Time selection -->
+          <div class="mb-4">
+            <h3 class="h5 mb-3 fw-bold border-bottom pb-2"><i class="fas fa-calendar-alt text-success me-2"></i>Scheduling Details</h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="pickupDate" class="form-label">Preferred Date</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-calendar"></i>
+                  <input type="date" class="form-control" id="pickupDate" name="pickupDate" required>
+                  <div class="invalid-feedback">Please select a preferred date.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="pickupTime" class="form-label">Preferred Time Slot</label>
+                <select class="form-select" id="pickupTime" name="pickupTime" required>
+                  <option value="" selected disabled>Select Time Slot</option>
+                  <option value="Morning (8:00 AM - 12:00 PM)">Morning (8:00 AM - 12:00 PM)</option>
+                  <option value="Afternoon (12:00 PM - 4:00 PM)">Afternoon (12:00 PM - 4:00 PM)</option>
+                  <option value="Evening (4:00 PM - 7:00 PM)">Evening (4:00 PM - 7:00 PM)</option>
+                </select>
+                <div class="invalid-feedback">Please select a preferred time slot.</div>
+              </div>
+              <div class="col-12">
+                <label for="pickupNotes" class="form-label">Additional Logistics Notes (Optional)</label>
+                <textarea class="form-control" id="pickupNotes" name="pickupNotes" rows="2" placeholder="Any building gate instructions or delivery protocols?"></textarea>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Consent checkbox -->
+          <div class="mb-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+              <label class="form-check-label text-muted small" for="terms">
+                I agree to the <a href="#" class="text-success text-decoration-none fw-bold" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a> for e-waste pickup services.
+              </label>
+              <div class="invalid-feedback">You must agree to the terms and conditions.</div>
+            </div>
+          </div>
+          
+          <div class="d-grid">
+            <button type="submit" class="btn btn-success py-2">Submit Pickup Request</button>
+          </div>
+          
+        </form>
+      </div>
     </div>
   </div>
-
-  <div class="row g-5">
-    <!-- Pickup Form -->
-    <div class="col-lg-8">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
-          <h2 class="h4 mb-4">Pickup Request Form</h2>
-          
-          <form action="/recycling/pickup" method="POST" class="needs-validation" novalidate>
-            <!-- Contact Information -->
-            <div class="mb-4">
-              <h3 class="h5 mb-3">Contact Information</h3>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label for="firstName" class="form-label">First Name</label>
-                  <input type="text" class="form-control" id="firstName" name="firstName" required>
-                  <div class="invalid-feedback">
-                    Please provide your first name.
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="lastName" class="form-label">Last Name</label>
-                  <input type="text" class="form-control" id="lastName" name="lastName" required>
-                  <div class="invalid-feedback">
-                    Please provide your last name.
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" required>
-                  <div class="invalid-feedback">
-                    Please provide a valid email address.
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="phone" class="form-label">Phone</label>
-                  <input type="tel" class="form-control" id="phone" name="phone" required>
-                  <div class="invalid-feedback">
-                    Please provide your phone number.
-                  </div>
-                </div>
-              </div>
+  
+  <!-- Right Side: Sidebar Info -->
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h3 class="h5 mb-3 fw-bold border-bottom pb-2">How It Works</h3>
+        <ul class="list-unstyled mb-0" style="font-size: 0.9rem;">
+          <li class="mb-3 d-flex">
+            <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 28px; height: 28px; flex-shrink: 0;">
+              1
             </div>
-            
-            <!-- Pickup Address -->
-            <div class="mb-4">
-              <h3 class="h5 mb-3">Pickup Address</h3>
-              <div class="row g-3">
-                <div class="col-12">
-                  <label for="address" class="form-label">Street Address</label>
-                  <input type="text" class="form-control" id="address" name="address" required>
-                  <div class="invalid-feedback">
-                    Please provide your street address.
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="city" class="form-label">City</label>
-                  <input type="text" class="form-control" id="city" name="city" required>
-                  <div class="invalid-feedback">
-                    Please provide your city.
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <label for="state" class="form-label">State</label>
-                  <select class="form-select" id="state" name="state" required>
-                    <option value="" selected disabled>Select State</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <!-- Add all states here -->
-                    <option value="WY">Wyoming</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select your state.
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <label for="zip" class="form-label">Zip Code</label>
-                  <input type="text" class="form-control" id="zip" name="zip" required>
-                  <div class="invalid-feedback">
-                    Please provide your zip code.
-                  </div>
-                </div>
-                <div class="col-12">
-                  <label for="addressNotes" class="form-label">Address Notes (Optional)</label>
-                  <textarea class="form-control" id="addressNotes" name="addressNotes" rows="2" placeholder="Apartment number, gate code, etc."></textarea>
-                </div>
-              </div>
+            <div>
+              <span class="fw-bold d-block">Submit Form</span>
+              Provide your details, pickup location, and e-waste item list.
             </div>
-            
-            <!-- Items for Pickup -->
-            <div class="mb-4">
-              <h3 class="h5 mb-3">Items for Pickup</h3>
-              <div class="row g-3">
-                <div class="col-12">
-                  <p class="mb-2">Select all items you need to recycle:</p>
-                  <div class="row g-2">
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="computers" name="items[]" value="computers">
-                        <label class="form-check-label" for="computers">Computers & Laptops</label>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="monitors" name="items[]" value="monitors">
-                        <label class="form-check-label" for="monitors">Monitors & Displays</label>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="phones" name="items[]" value="phones">
-                        <label class="form-check-label" for="phones">Phones & Tablets</label>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="printers" name="items[]" value="printers">
-                        <label class="form-check-label" for="printers">Printers & Scanners</label>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="tvs" name="items[]" value="tvs">
-                        <label class="form-check-label" for="tvs">TVs</label>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="batteries" name="items[]" value="batteries">
-                        <label class="form-check-label" for="batteries">Batteries</label>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="appliances" name="items[]" value="appliances">
-                        <label class="form-check-label" for="appliances">Small Appliances</label>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="cables" name="items[]" value="cables">
-                        <label class="form-check-label" for="cables">Cables & Wires</label>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="other" name="items[]" value="other">
-                        <label class="form-check-label" for="other">Other Items</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <label for="itemDetails" class="form-label">Item Details</label>
-                  <textarea class="form-control" id="itemDetails" name="itemDetails" rows="3" placeholder="Please provide details about the items you're recycling, including quantities and any other relevant information." required></textarea>
-                  <div class="invalid-feedback">
-                    Please provide details about your items.
-                  </div>
-                </div>
-              </div>
+          </li>
+          <li class="mb-3 d-flex">
+            <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 28px; height: 28px; flex-shrink: 0;">
+              2
             </div>
-            
-            <!-- Pickup Schedule -->
-            <div class="mb-4">
-              <h3 class="h5 mb-3">Pickup Schedule</h3>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label for="pickupDate" class="form-label">Preferred Date</label>
-                  <input type="date" class="form-control" id="pickupDate" name="pickupDate" required>
-                  <div class="invalid-feedback">
-                    Please select a preferred date.
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="pickupTime" class="form-label">Preferred Time</label>
-                  <select class="form-select" id="pickupTime" name="pickupTime" required>
-                    <option value="" selected disabled>Select Time</option>
-                    <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
-                    <option value="afternoon">Afternoon (12:00 PM - 4:00 PM)</option>
-                    <option value="evening">Evening (4:00 PM - 7:00 PM)</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a preferred time.
-                  </div>
-                </div>
-                <div class="col-12">
-                  <label for="pickupNotes" class="form-label">Additional Notes (Optional)</label>
-                  <textarea class="form-control" id="pickupNotes" name="pickupNotes" rows="2" placeholder="Any special instructions for the pickup team?"></textarea>
-                </div>
-              </div>
+            <div>
+              <span class="fw-bold d-block">Slot Confirmation</span>
+              Our scheduling desk will contact you to finalize the appointment.
             </div>
-            
-            <!-- Terms and Submit -->
-            <div class="mb-4">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
-                <label class="form-check-label" for="terms">
-                  I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">terms and conditions</a> for e-waste pickup services.
-                </label>
-                <div class="invalid-feedback">
-                  You must agree to the terms and conditions.
-                </div>
-              </div>
+          </li>
+          <li class="mb-3 d-flex">
+            <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 28px; height: 28px; flex-shrink: 0;">
+              3
             </div>
-            
-            <button type="submit" class="btn btn-success btn-lg">Submit Pickup Request</button>
-          </form>
-        </div>
+            <div>
+              <span class="fw-bold d-block">Collection Day</span>
+              A driver arrives with proper handling materials to load the items.
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
     
-    <!-- Sidebar -->
-    <div class="col-lg-4">
-      <div class="card border-0 shadow-sm mb-4">
-        <div class="card-body">
-          <h3 class="h5 mb-3">How It Works</h3>
-          <ol class="list-group list-group-numbered mb-0">
-            <li class="list-group-item border-0 d-flex">
-              <div class="ms-2">
-                <div class="fw-bold">Submit Request</div>
-                Fill out the pickup request form with your details and items.
-              </div>
-            </li>
-            <li class="list-group-item border-0 d-flex">
-              <div class="ms-2">
-                <div class="fw-bold">Confirmation</div>
-                Receive a confirmation email with your scheduled pickup date and time.
-              </div>
-            </li>
-            <li class="list-group-item border-0 d-flex">
-              <div class="ms-2">
-                <div class="fw-bold">Preparation</div>
-                Prepare your items for pickup by following our guidelines.
-              </div>
-            </li>
-            <li class="list-group-item border-0 d-flex">
-              <div class="ms-2">
-                <div class="fw-bold">Pickup</div>
-                Our team will arrive at the scheduled time to collect your items.
-              </div>
-            </li>
-            <li class="list-group-item border-0 d-flex">
-              <div class="ms-2">
-                <div class="fw-bold">Recycling Certificate</div>
-                Receive a certificate confirming your items have been properly recycled.
-              </div>
-            </li>
-          </ol>
-        </div>
-      </div>
-      
-      <div class="card border-0 shadow-sm mb-4">
-        <div class="card-body">
-          <h3 class="h5 mb-3">Pickup Guidelines</h3>
-          <ul class="list-group list-group-flush mb-0">
-            <li class="list-group-item border-0 ps-0">
-              <i class="fas fa-check-circle text-success me-2"></i> Items should be accessible and ready for pickup.
-            </li>
-            <li class="list-group-item border-0 ps-0">
-              <i class="fas fa-check-circle text-success me-2"></i> Back up and wipe data from devices before pickup.
-            </li>
-            <li class="list-group-item border-0 ps-0">
-              <i class="fas fa-check-circle text-success me-2"></i> Remove batteries from devices when possible.
-            </li>
-            <li class="list-group-item border-0 ps-0">
-              <i class="fas fa-check-circle text-success me-2"></i> Package items securely to prevent damage.
-            </li>
-            <li class="list-group-item border-0 ps-0">
-              <i class="fas fa-check-circle text-success me-2"></i> Someone must be present during the pickup.
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="card border-0 shadow-sm">
-        <div class="card-body">
-          <h3 class="h5 mb-3">Need Help?</h3>
-          <p>If you have questions about our pickup service or need assistance, please contact us:</p>
-          <div class="d-grid gap-2">
-            <a href="tel:1234567890" class="btn btn-outline-success">
-              <i class="fas fa-phone me-2"></i> (123) 456-7890
-            </a>
-            <a href="mailto:pickup@ewaste-management.org" class="btn btn-outline-success">
-              <i class="fas fa-envelope me-2"></i> Email Us
-            </a>
-          </div>
-        </div>
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h3 class="h5 mb-3 fw-bold border-bottom pb-2">Recycle Guidelines</h3>
+        <ul class="list-unstyled mb-0 small text-muted">
+          <li class="mb-2 d-flex align-items-center">
+            <i class="fas fa-check text-success me-2"></i> Backup & remove personal accounts from hard drives.
+          </li>
+          <li class="mb-2 d-flex align-items-center">
+            <i class="fas fa-check text-success me-2"></i> Remove lithium batteries from laptops if safe.
+          </li>
+          <li class="mb-2 d-flex align-items-center">
+            <i class="fas fa-check text-success me-2"></i> Bundle cables together with ties.
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Terms and Conditions Modal -->
+<!-- Terms Modal -->
 <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: var(--radius-md);">
       <div class="modal-header">
-        <h5 class="modal-title" id="termsModalLabel">Terms and Conditions for E-Waste Pickup</h5>
+        <h5 class="modal-title fw-bold" id="termsModalLabel">Terms and Conditions</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <h6>1. Service Overview</h6>
-        <p>Our e-waste pickup service is designed to collect electronic waste from residential and commercial locations for proper recycling and disposal.</p>
-        
-        <h6>2. Scheduling and Availability</h6>
-        <p>Pickup services are available Monday through Friday, 8:00 AM to 7:00 PM. Weekend pickups may be available in select areas for an additional fee.</p>
-        
-        <h6>3. Preparation Requirements</h6>
-        <p>All items must be accessible and ready for pickup at the scheduled time. Items should be disconnected, with batteries removed when possible, and packaged securely.</p>
-        
-        <h6>4. Data Security</h6>
-        <p>We recommend backing up and securely wiping all data from devices before pickup. While we follow strict data security protocols, we are not responsible for any data left on devices.</p>
-        
-        <h6>5. Cancellation Policy</h6>
-        <p>Cancellations must be made at least 24 hours before the scheduled pickup time. Late cancellations may incur a fee.</p>
-        
-        <h6>6. Liability</h6>
-        <p>Our liability is limited to the proper handling and recycling of items after pickup. We are not responsible for any damage to items before pickup or during transportation if items were improperly packaged.</p>
-        
-        <h6>7. Prohibited Items</h6>
-        <p>We do not accept hazardous waste, radioactive materials, or items contaminated with hazardous substances. A complete list of prohibited items is available upon request.</p>
+      <div class="modal-body p-4 text-muted small">
+        <h6 class="fw-bold text-dark">1. Service Availability</h6>
+        <p>E-waste pickups are processed during standard working hours. Someone above 18 years must be present during collection.</p>
+        <h6 class="fw-bold text-dark">2. Device Verification</h6>
+        <p>Only electronic components can be recycled. Hazardous chemical containers, toxic materials, and non-e-waste garbage are prohibited.</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-<%- include('../../partials/footer') %> 
+<%- include('../../partials/footer') %>

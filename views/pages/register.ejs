@@ -1,131 +1,232 @@
 <%- include('../partials/header') %>
 
-<div class="container">
-  <div class="row mb-5">
-    <div class="col-lg-6 mx-auto text-center">
-      <h1 class="display-4 mb-4">Register</h1>
-      <p class="lead">Create your E-Waste Management account</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8 mx-auto">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
-          <% if (typeof error !== 'undefined') { %>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <%= error %>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          <% } %>
-          
-          <!-- Social Registration Options -->
-          <div class="mb-4">
-            <div class="d-grid gap-2">
-              <a href="/auth/google" class="btn btn-outline-danger">
-                <i class="fab fa-google me-2"></i> Register with Google
-              </a>
-              <a href="/auth/facebook" class="btn btn-outline-primary">
-                <i class="fab fa-facebook-f me-2"></i> Register with Facebook
-              </a>
-            </div>
+<div class="row min-vh-75 align-items-center">
+  <div class="col-12">
+    <div class="card border-0 shadow-sm my-4">
+      <div class="row g-0">
+        
+        <!-- Left Hero Section (Visuals & Info) -->
+        <div class="col-lg-4 bg-success text-white p-5 d-none d-lg-flex flex-column justify-content-between" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%) !important;">
+          <div>
+            <h2 class="text-white fw-bold mb-3"><i class="fas fa-recycle me-2"></i>EcoRecycle</h2>
+            <p class="text-white opacity-75 lead" style="font-size: 1rem;">Join thousands of eco-citizens. Build your recycle profile, track reward points, and book e-waste pickup requests instantly.</p>
           </div>
           
-          <div class="position-relative my-4">
-            <hr>
-            <p class="small bg-white px-2 position-absolute top-50 start-50 translate-middle">OR</p>
+          <div class="my-4">
+            <h5 class="h6 text-white mb-3">Your Recycle Privileges:</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-3 d-flex align-items-start">
+                <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                <span>Access user dashboard & request statistics</span>
+              </li>
+              <li class="mb-3 d-flex align-items-start">
+                <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                <span>Fast track home and business pickup scheduling</span>
+              </li>
+              <li class="mb-3 d-flex align-items-start">
+                <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                <span>Earn recycle points redeemable for voucher rewards</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="border-top border-white border-opacity-10 pt-3">
+            <span class="small text-white opacity-50">&copy; EcoRecycle India</span>
+          </div>
+        </div>
+        
+        <!-- Right Form Section -->
+        <div class="col-lg-8 p-5">
+          <div class="mb-4">
+            <h1 class="h3 fw-extrabold mb-1">Create Account</h1>
+            <p class="text-muted">Register to start your e-waste recycling journey</p>
           </div>
           
           <form action="/register" method="POST" class="needs-validation" novalidate>
             <div class="row g-3">
+              
+              <!-- First Name -->
               <div class="col-md-6">
                 <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" required>
-                <div class="invalid-feedback">
-                  Please provide your first name.
+                <div class="input-group-premium">
+                  <i class="fas fa-user"></i>
+                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John" required>
+                  <div class="invalid-feedback">
+                    Please provide your first name.
+                  </div>
                 </div>
               </div>
               
+              <!-- Last Name -->
               <div class="col-md-6">
                 <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" required>
-                <div class="invalid-feedback">
-                  Please provide your last name.
+                <div class="input-group-premium">
+                  <i class="fas fa-user"></i>
+                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe" required>
+                  <div class="invalid-feedback">
+                    Please provide your last name.
+                  </div>
                 </div>
               </div>
               
+              <!-- Username -->
               <div class="col-md-6">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-                <div class="invalid-feedback">
-                  Please provide a valid email address.
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-at"></i>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="johndoe" required>
+                  <div class="invalid-feedback">
+                    Please provide a unique username.
+                  </div>
                 </div>
               </div>
               
+              <!-- Phone Number -->
               <div class="col-md-6">
-                <label for="phone" class="form-label">Phone Number (optional)</label>
-                <input type="tel" class="form-control" id="phone" name="phone">
+                <label for="phone" class="form-label">Phone Number</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-phone"></i>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 98765 43210" required>
+                  <div class="invalid-feedback">
+                    Please provide your phone number.
+                  </div>
+                </div>
               </div>
               
+              <!-- Email Address -->
+              <div class="col-md-12">
+                <label for="email" class="form-label">Email Address</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="john.doe@example.com" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid email address.
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Password -->
               <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-                <div class="invalid-feedback">
-                  Please provide a password.
+                <div class="input-group-premium">
+                  <i class="fas fa-lock"></i>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="••••••••" required>
+                  <button type="button" class="btn-toggle-password" data-target="password" aria-label="Toggle Password Visibility">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <div class="invalid-feedback">
+                    Please provide a password.
+                  </div>
                 </div>
-                <div class="form-text">
-                  Password must be at least 8 characters long and include a mix of letters, numbers, and special characters.
+                <div class="form-text text-muted small mt-1">
+                  At least 8 characters.
                 </div>
               </div>
               
+              <!-- Confirm Password -->
               <div class="col-md-6">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-                <div class="invalid-feedback">
-                  Please confirm your password.
+                <div class="input-group-premium">
+                  <i class="fas fa-lock"></i>
+                  <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
+                  <button type="button" class="btn-toggle-password" data-target="confirmPassword" aria-label="Toggle Password Visibility">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <div class="invalid-feedback">
+                    Please confirm your password.
+                  </div>
                 </div>
               </div>
               
-              <div class="col-12">
-                <label for="address" class="form-label">Address (optional)</label>
-                <input type="text" class="form-control" id="address" name="address">
+              <!-- Address Details Header -->
+              <div class="col-12 mt-4">
+                <h5 class="h6 text-muted border-bottom pb-2">Address Details (Optional)</h5>
               </div>
               
+              <!-- Address -->
+              <div class="col-md-12">
+                <label for="address" class="form-label">Street Address</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <input type="text" class="form-control" id="address" name="address" placeholder="Flat / House No., Colony / Street">
+                </div>
+              </div>
+              
+              <!-- City -->
               <div class="col-md-6">
-                <label for="city" class="form-label">City (optional)</label>
-                <input type="text" class="form-control" id="city" name="city">
+                <label for="city" class="form-label">City</label>
+                <div class="input-group-premium">
+                  <i class="fas fa-city"></i>
+                  <input type="text" class="form-control" id="city" name="city" placeholder="Patna">
+                </div>
               </div>
               
+              <!-- State -->
               <div class="col-md-4">
-                <label for="state" class="form-label">State (optional)</label>
+                <label for="state" class="form-label">State</label>
                 <select class="form-select" id="state" name="state">
-                  <option value="" selected>Choose...</option>
-                  <option value="AL">Alabama</option>
-                  <option value="AK">Alaska</option>
-                  <!-- Add all states here -->
-                  <option value="WY">Wyoming</option>
+                  <option value="" selected>Choose State...</option>
+                  <option value="AN">Andaman and Nicobar Islands</option>
+                  <option value="AP">Andhra Pradesh</option>
+                  <option value="AR">Arunachal Pradesh</option>
+                  <option value="AS">Assam</option>
+                  <option value="BR">Bihar</option>
+                  <option value="CH">Chandigarh</option>
+                  <option value="CT">Chhattisgarh</option>
+                  <option value="DN">Dadra and Nagar Haveli and Daman and Diu</option>
+                  <option value="DL">Delhi</option>
+                  <option value="GA">Goa</option>
+                  <option value="GJ">Gujarat</option>
+                  <option value="HR">Haryana</option>
+                  <option value="HP">Himachal Pradesh</option>
+                  <option value="JK">Jammu and Kashmir</option>
+                  <option value="JH">Jharkhand</option>
+                  <option value="KA">Karnataka</option>
+                  <option value="KL">Kerala</option>
+                  <option value="LA">Ladakh</option>
+                  <option value="LD">Lakshadweep</option>
+                  <option value="MP">Madhya Pradesh</option>
+                  <option value="MH">Maharashtra</option>
+                  <option value="MN">Manipur</option>
+                  <option value="ML">Meghalaya</option>
+                  <option value="MZ">Mizoram</option>
+                  <option value="NL">Nagaland</option>
+                  <option value="OR">Odisha</option>
+                  <option value="PY">Puducherry</option>
+                  <option value="PB">Punjab</option>
+                  <option value="RJ">Rajasthan</option>
+                  <option value="SK">Sikkim</option>
+                  <option value="TN">Tamil Nadu</option>
+                  <option value="TG">Telangana</option>
+                  <option value="TR">Tripura</option>
+                  <option value="UP">Uttar Pradesh</option>
+                  <option value="UK">Uttarakhand</option>
+                  <option value="WB">West Bengal</option>
                 </select>
               </div>
               
+              <!-- Zip Code -->
               <div class="col-md-2">
-                <label for="zip" class="form-label">Zip (optional)</label>
-                <input type="text" class="form-control" id="zip" name="zip">
+                <label for="zip" class="form-label">Pincode</label>
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="800001">
               </div>
               
-              <div class="col-12">
+              <!-- Newsletter checkbox -->
+              <div class="col-12 mt-3">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
-                  <label class="form-check-label" for="newsletter">
+                  <label class="form-check-label text-muted small" for="newsletter">
                     Subscribe to our newsletter for updates on e-waste management
                   </label>
                 </div>
               </div>
               
+              <!-- Terms check -->
               <div class="col-12">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
-                  <label class="form-check-label" for="terms">
-                    I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">terms and conditions</a>
+                  <label class="form-check-label text-muted small" for="terms">
+                    I agree to the <a href="#" class="text-success text-decoration-none fw-bold" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a>
                   </label>
                   <div class="invalid-feedback">
                     You must agree to the terms and conditions.
@@ -133,20 +234,21 @@
                 </div>
               </div>
               
-              <div class="col-12 mt-3">
-                <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-success">Create Account</button>
+              <!-- Create button -->
+              <div class="col-12 mt-4">
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-success py-2">Create Account</button>
                 </div>
               </div>
+              
             </div>
           </form>
+          
+          <div class="mt-4 text-center">
+            <p class="mb-0 text-muted small">Already have an account? <a href="/login" class="text-success text-decoration-none fw-bold">Sign in</a></p>
+          </div>
         </div>
-      </div>
-      
-      <div class="card border-0 shadow-sm mt-4">
-        <div class="card-body p-4 text-center">
-          <p class="mb-0">Already have an account? <a href="/login" class="text-decoration-none">Sign in</a></p>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -154,36 +256,33 @@
 
 <!-- Terms and Conditions Modal -->
 <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: var(--radius-md);">
       <div class="modal-header">
-        <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+        <h5 class="modal-title fw-bold" id="termsModalLabel">Terms and Conditions</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <h6>1. Account Registration</h6>
-        <p>By registering for an account, you agree to provide accurate and complete information. You are responsible for maintaining the confidentiality of your account credentials.</p>
+      <div class="modal-body p-4" style="max-height: 400px; overflow-y: auto;">
+        <h6 class="fw-bold">1. Account Registration</h6>
+        <p class="text-muted small">By registering for an account, you agree to provide accurate and complete information. You are responsible for maintaining the confidentiality of your account credentials.</p>
         
-        <h6>2. Privacy Policy</h6>
-        <p>Your personal information will be handled in accordance with our Privacy Policy. We respect your privacy and will only use your information for the purposes stated in our policy.</p>
+        <h6 class="fw-bold">2. Privacy Policy</h6>
+        <p class="text-muted small">Your personal information will be handled in accordance with our Privacy Policy. We respect your privacy and will only use your information for the purposes stated in our policy.</p>
         
-        <h6>3. User Conduct</h6>
-        <p>You agree to use our services only for lawful purposes and in a way that does not infringe upon the rights of others or restrict their use of the service.</p>
+        <h6 class="fw-bold">3. User Conduct</h6>
+        <p class="text-muted small">You agree to use our services only for lawful purposes and in a way that does not infringe upon the rights of others or restrict their use of the service.</p>
         
-        <h6>4. Service Modifications</h6>
-        <p>We reserve the right to modify, suspend, or discontinue any part of our service at any time without prior notice.</p>
+        <h6 class="fw-bold">4. Service Modifications</h6>
+        <p class="text-muted small">We reserve the right to modify, suspend, or discontinue any part of our service at any time without prior notice.</p>
         
-        <h6>5. Limitation of Liability</h6>
-        <p>We shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services.</p>
-        
-        <h6>6. Governing Law</h6>
-        <p>These terms shall be governed by and construed in accordance with the laws of the jurisdiction in which we operate, without regard to its conflict of law provisions.</p>
+        <h6 class="fw-bold">5. Limitation of Liability</h6>
+        <p class="text-muted small">We shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services.</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <div class="modal-footer border-top-0">
+        <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">I Understand</button>
       </div>
     </div>
   </div>
 </div>
 
-<%- include('../partials/footer') %> 
+<%- include('../partials/footer') %>

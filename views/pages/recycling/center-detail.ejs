@@ -1,0 +1,87 @@
+<%- include('../../partials/header') %>
+
+<div class="row g-4 mt-2">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm p-4">
+      <div class="card-body">
+        
+        <div class="d-flex justify-content-between align-items-start flex-wrap mb-4">
+          <div>
+            <h1 class="h3 fw-extrabold mb-2"><%= center.name %></h1>
+            <p class="text-muted small mb-0"><i class="fas fa-certificate text-success me-1"></i> <%= center.certifications.join(' • ') %></p>
+          </div>
+          <span class="badge bg-success mt-2 mt-sm-0">Certified Recycler</span>
+        </div>
+        
+        <img src="<%= center.image %>" class="img-fluid rounded-3 mb-4 w-100" style="max-height: 350px; object-fit: cover;" alt="<%= center.name %>">
+        
+        <h3 class="h5 fw-bold mb-3">About the Facility</h3>
+        <p class="text-muted"><%= center.description %></p>
+        
+        <div class="mt-4">
+          <h3 class="h5 fw-bold mb-3">Accepted Recycling Items</h3>
+          <div class="d-flex flex-wrap gap-2">
+            <% center.acceptedItems.forEach(item => { %>
+              <span class="badge bg-light text-dark border py-2 px-3"><%= item %></span>
+            <% }) %>
+          </div>
+        </div>
+        
+        <div class="mt-5 pt-3 border-top">
+          <a href="/recycling/centers" class="btn btn-outline-success"><i class="fas fa-arrow-left me-2"></i> Back to Centers List</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-4">
+        <h3 class="h5 fw-bold mb-4 border-bottom pb-2">Facility Details</h3>
+        
+        <div class="d-flex mb-3">
+          <div class="bg-success bg-opacity-10 text-success rounded p-2 me-3 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <h4 class="h6 mb-1 fw-bold">Address</h4>
+            <p class="small text-muted mb-0"><%= center.address %></p>
+          </div>
+        </div>
+        
+        <div class="d-flex mb-3">
+          <div class="bg-success bg-opacity-10 text-success rounded p-2 me-3 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>
+            <h4 class="h6 mb-1 fw-bold">Contact Number</h4>
+            <p class="small text-muted mb-0"><%= center.phone %></p>
+          </div>
+        </div>
+        
+        <div class="d-flex mb-3">
+          <div class="bg-success bg-opacity-10 text-success rounded p-2 me-3 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div>
+            <h4 class="h6 mb-1 fw-bold">Hours of Operation</h4>
+            <p class="small text-muted mb-0"><%= center.hours %></p>
+          </div>
+        </div>
+        
+        <div class="d-grid gap-2 mt-4">
+          <a href="https://maps.google.com/?q=<%= encodeURIComponent(center.address) %>" target="_blank" class="btn btn-success">
+            <i class="fas fa-directions me-2"></i> Get Directions
+          </a>
+          <a href="tel:<%= center.phone.replace(/[^0-9]/g, '') %>" class="btn btn-outline-secondary">
+            <i class="fas fa-phone me-2"></i> Call Facility
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/footer') %>
