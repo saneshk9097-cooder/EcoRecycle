@@ -1,3 +1,5 @@
+import { generateCodeVerifier, generateState, Google } from 'arctic';
+
 const { asyncHandler } = require('../utlis/asyncHandler');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
@@ -248,4 +250,24 @@ exports.postResetPassword = asyncHandler(async (req, res) => {
         path: '/login',
         success: 'Password reset successful! You can now log in with your new password.'
     });
+});
+
+export const getGoogleLoginPage=asyncHandler(async(req,res)=>{
+    if(req.user) return res.redirect("/");
+
+    const state=generateState();
+    const codeVerifier=generateCodeVerifier();
+
+    const url=Google.createAuthorizationURL(state,codeVerifier,[
+        "oenid",//this is calaed scopes,there we are giving openid,and profile
+        "profile",//openid give token if needed,and profile gives user infromation
+        //we are telling google about the infromationthat we required from
+        "email"
+    ]);
+    const cookieConfig={
+        httpOnly:true,
+        secure:true,
+        maxAge:OAUTH_EXCHANGE_EXPIRY,
+        sameSite:"lax",//this is such that when google redirect to our website cookois are maintained
+    }
 });
