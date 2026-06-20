@@ -35,6 +35,9 @@ Featuring secure session-based authentication, a global Light/Dark mode toggler,
 ## 🌟 Features
 
 - 👤 **Secure User Authentication**: Full user signup, login, and logout lifecycles powered by session-based authentication, `bcrypt` password hashing, and route protection.
+- 🔑 **Google OAuth 2.0 Sign-In**: Seamless authentication supporting Google Sign-Up, Google Login, returning user login, and automated existing account linking (using email matches) with safe unique username generation.
+- 🖼️ **Dynamic Avatar Rendering**: Displays user's Google profile image dynamically in the navbar, dashboard card, community reviews timeline, and profile page, falling back to name initials.
+- 👤 **Account Details Profile**: Renders a dedicated `/profile` card detail page showing contact information, address details, and connection status (Google Connected badge vs. Local Password).
 - 🌓 **System-Wide Theme Switcher**: A global Light/Dark mode toggler with smooth transition curves, `localStorage` state persistence, and blocker scripts to prevent page-load flash.
 - 📊 **Dynamic User Dashboard**: Displays live user recycling statistics (Pickups Booked, Items Recycled, CO₂ Saved, Reward Points) and tracks scheduled pickup details.
 - 🗓️ **E-Waste Pickup Scheduler**: A multi-step form validator interface enabling authenticated users to schedule pickups for custom electronic items.
@@ -173,6 +176,9 @@ A `.env.example` file is included. Create a `.env` in the root folder with:
 - `PORT`: Port the node server binds to. *(Default: `3000`)*
 - `MONGODB_URI`: Connection string to your local or Atlas MongoDB cluster.
 - `SESSION_SECRET`: Cryptographic key used to sign Express session cookies.
+- `GOOGLE_CLIENT_ID`: Google OAuth 2.0 client ID from Google API Console.
+- `GOOGLE_CLIENT_SECRET`: Google OAuth 2.0 client secret.
+- `GOOGLE_REDIRECT_URI`: Registered redirect callback URI (e.g. `http://localhost:3000/google/callback`).
 
 ---
 
@@ -185,8 +191,11 @@ A `.env.example` file is included. Create a `.env` in the root folder with:
 | **POST** | `/login` | Validates credentials and initializes session | Public (Guest only) |
 | **GET** | `/register` | Renders User Registration form | Public (Guest only) |
 | **POST** | `/register` | Encrypts password and creates new profile | Public (Guest only) |
+| **GET** | `/auth/google` | Redirects user to Google OAuth 2.0 consent page | Public (Guest only) |
+| **GET** | `/google/callback` | Exchanges code, queries Google profile, links/creates user, logs session | Public |
 | **GET** | `/logout` | Destroys active user session | Private (Auth required) |
 | **GET** | `/dashboard` | User dashboard detailing pickup logs & stats | Private (Auth required) |
+| **GET** | `/profile` | Displays user details, avatar, and Google connection status | Private (Auth required) |
 
 ### Password Recovery
 | Method | Route | Description | Access |
@@ -247,14 +256,16 @@ const userSchema = new mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String, required: function() { return !this.googleId; } },
     phone: String,
     address: String,
     city: String,
     state: String,
     zip: String,
     resetPasswordToken: String,
-    resetPasswordExpire: Date
+    resetPasswordExpire: Date,
+    googleId: { type: String, unique: true, sparse: true },
+    profilePicture: String
 });
 ```
 
