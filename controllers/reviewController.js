@@ -5,7 +5,7 @@ const Review = require('../models/Review');
 
 // Render the reviews page and list all reviews
 exports.getReviews = asyncHandler(async (req, res) => {
-    const reviews = await Review.find().populate('user', 'firstName lastName').sort({ createdAt: -1 });
+    const reviews = await Review.find().populate('user', 'firstName lastName profilePicture').sort({ createdAt: -1 });
 
     let averageRating = 0;
     if (reviews.length > 0) {

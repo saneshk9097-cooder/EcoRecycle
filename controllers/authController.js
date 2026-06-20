@@ -339,7 +339,14 @@ exports.handleGoogleCallback = asyncHandler(async (req, res) => {
     // 1. Try to find user by googleId
     let user = await User.findOne({ googleId });
 
-    if (!user) {
+    if (user) {
+        // Sync profile picture if it has changed on Google
+        if (profilePicture && user.profilePicture !== profilePicture) {
+            user.profilePicture = profilePicture;
+            await user.save();
+            console.log(`[Google OAuth]: Updated profile picture for user ${user.email}`);
+        }
+    } else {
         // 2. Try to find user by email (Account Linking)
         user = await User.findOne({ email });
 

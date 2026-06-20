@@ -118,9 +118,10 @@
           <div class="card border-0 shadow-sm p-4 fade-in">
             <div class="d-flex justify-content-between align-items-start mb-3">
               <div class="d-flex align-items-center">
-                <!-- Initials Avatar -->
-                <div class="user-avatar-initials d-flex align-items-center justify-content-center text-white fw-bold me-3" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); font-size: 0.95rem;">
-                  <% if (review.user && review.user.firstName && review.user.lastName) { %>
+                <div class="user-avatar-initials d-flex align-items-center justify-content-center text-white fw-bold me-3" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); font-size: 0.95rem; overflow: hidden;">
+                  <% if (review.user && review.user.profilePicture) { %>
+                    <img src="<%= review.user.profilePicture %>" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                  <% } else if (review.user && review.user.firstName && review.user.lastName) { %>
                     <%= (review.user.firstName.charAt(0) + review.user.lastName.charAt(0)).toUpperCase() %>
                   <% } else { %>
                     UR
