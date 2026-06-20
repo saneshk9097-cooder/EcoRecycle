@@ -90,7 +90,7 @@ Featuring secure session-based authentication, a global Light/Dark mode toggler,
 │   ├── education.js    # Routes for articles, tips, and videos
 │   ├── index.js        # Auth, Dashboard, and Review routes
 │   └── recycling.js    # Routes for center locators and pickups
-├── utlis/              # Shared utility helpers (CommonJS)
+├── utils/              # Shared utility helpers (CommonJS)
 │   ├── ApiError.js     # Standardized API error handling class
 │   ├── ApiResponse.js  # Standardized API response format constructor
 │   └── asyncHandler.js # Wrapper to eliminate try-catch block repetitions

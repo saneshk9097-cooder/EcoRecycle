@@ -29,8 +29,8 @@ router.get('/auth/google', authController.initiateGoogleAuth);
 router.get('/google/callback', authController.handleGoogleCallback);
 
 // Facebook Authentication Routes (Simulated)
-router.get('/auth/facebook', (req, res) => res.redirect('/dashboard'));
-router.get('/auth/facebook/callback', (req, res) => res.redirect('/dashboard'));
+router.get('/auth/facebook', authController.initiateFacebookAuth);
+router.get('/auth/facebook/callback', authController.handleFacebookCallback);
 
 // Forgot Password
 router.get('/forgot-password', isGuest, authController.getForgotPassword);

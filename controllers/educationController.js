@@ -1,3 +1,5 @@
+const constants = require('../config/constants');
+
 // Education articles data
 const articles = [
     {
@@ -131,23 +133,26 @@ exports.getEducationIndex = (req, res) => {
 exports.getFacts = (req, res) => {
     res.render('pages/education/facts', {
         title: 'E-Waste Facts - E-Waste Management',
-        path: '/education/facts'
+        path: '/education/facts',
+        facts: constants.facts
     });
 };
 
 // Tips page
 exports.getTips = (req, res) => {
     res.render('pages/education/tips', {
-        title: 'Recycling Tips - E-Waste Management',
-        path: '/education/tips'
+        title: 'E-Waste Reduction Tips - E-Waste Management',
+        path: '/education/tips',
+        tips: constants.tips
     });
 };
 
 // Resources page
 exports.getResources = (req, res) => {
     res.render('pages/education/resources', {
-        title: 'Resources - E-Waste Management',
-        path: '/education/resources'
+        title: 'E-Waste Resources - E-Waste Management',
+        path: '/education/resources',
+        resources: constants.resources
     });
 };
 

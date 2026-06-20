@@ -1,4 +1,4 @@
-const { asyncHandler } = require('../utlis/asyncHandler');
+const { asyncHandler } = require('../utils/asyncHandler');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
@@ -263,6 +263,17 @@ exports.initiateGoogleAuth = (req, res) => {
         });
     }
 
+    // Diagnostic validation warning in production
+    if (process.env.NODE_ENV === 'production' && redirectUri.includes('localhost')) {
+        console.warn('\n========================================');
+        console.warn('[GOOGLE OAUTH CONFIGURATION WARNING]');
+        console.warn(`GOOGLE_REDIRECT_URI is configured as: "${redirectUri}"`);
+        console.warn('The application is running in PRODUCTION (Render). This localhost callback');
+        console.warn('will fail to authenticate and redirect back to the user\'s local machine.');
+        console.warn('Please update the GOOGLE_REDIRECT_URI environment variable on Render.');
+        console.warn('========================================\n');
+    }
+
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${encodeURIComponent(clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=profile%20email&state=google-oauth-state`;
     res.redirect(authUrl);
 };
@@ -390,4 +401,13 @@ exports.getProfile = (req, res) => {
         title: 'My Profile - E-Waste Management',
         path: '/profile'
     });
+};
+
+// Simulated Facebook Authentication
+exports.initiateFacebookAuth = (req, res) => {
+    res.redirect('/dashboard');
+};
+
+exports.handleFacebookCallback = (req, res) => {
+    res.redirect('/dashboard');
 };

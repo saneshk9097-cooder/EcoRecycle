@@ -45,6 +45,7 @@
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
   --bg-color: #0b1329;
   --text-color: #f8fafc;
   --card-bg: #1e293b;
@@ -243,6 +244,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-sm);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  color: var(--text-color);
 }
 
 .card-hover:hover, .card.shadow-sm:hover {
@@ -568,4 +570,54 @@ h1, h2, h3, h4, h5, h6 {
   .auth-form-panel {
     padding: 3rem 2rem;
   }
+}
+
+/* Dark Mode Form Visibility Fixes */
+[data-theme="dark"] .form-check-label {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .form-control::placeholder,
+[data-theme="dark"] .form-control::-webkit-input-placeholder,
+[data-theme="dark"] .form-control::-moz-placeholder,
+[data-theme="dark"] .form-control:-ms-input-placeholder {
+  color: var(--dark-subtle) !important;
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .form-check.card {
+  background-color: rgba(30, 41, 59, 0.4) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .form-select option {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .form-check-input {
+  background-color: var(--input-bg);
+  border-color: var(--input-border);
+}
+
+[data-theme="dark"] .form-check-input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Ensure datetime-local and select fields have visible text in dark theme */
+[data-theme="dark"] input[type="date"],
+[data-theme="dark"] input[type="time"],
+[data-theme="dark"] input[type="datetime-local"] {
+  color: var(--input-text) !important;
+}
+
+/* Force correct heading colors inside cards in dark mode */
+[data-theme="dark"] .card h1,
+[data-theme="dark"] .card h2,
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .card h4,
+[data-theme="dark"] .card h5,
+[data-theme="dark"] .card h6 {
+  color: var(--text-color) !important;
 }

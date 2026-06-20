@@ -4,12 +4,7 @@ const recyclingController = require('../controllers/recyclingController');
 const { isAuth } = require('../middleware/auth');
 
 // Recycling main page
-router.get('/', (req, res) => {
-  res.render('pages/recycling/index', {
-    title: 'E-Waste Recycling',
-    path: '/recycling'
-  });
-});
+router.get('/', recyclingController.getRecyclingIndex);
 
 // Recycling centers list
 router.get('/centers', recyclingController.getCenters);

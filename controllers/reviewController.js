@@ -1,6 +1,6 @@
-const { asyncHandler } = require('../utlis/asyncHandler');
-const { ApiError } = require('../utlis/ApiError');
-const { apiResponse } = require('../utlis/ApiResponse');
+const { asyncHandler } = require('../utils/asyncHandler');
+const { ApiError } = require('../utils/ApiError');
+const { apiResponse } = require('../utils/ApiResponse');
 const Review = require('../models/Review');
 
 // Render the reviews page and list all reviews
