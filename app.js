@@ -192,6 +192,21 @@ app.use((req, res, next) => {
   });
 });
 
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  const status = err.statusCode || 500;
+  const message = err.message || 'Something went wrong';
+  
+  res.status(status).render('pages/error', {
+    title: `Error ${status} - E-Waste Management`,
+    path: req.url,
+    error: {
+      status,
+      message
+    }
+  });
+});
+
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

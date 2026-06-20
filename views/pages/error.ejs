@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<div class="container py-5 min-vh-75 d-flex align-items-center justify-content-center">
+  <div class="row w-100">
+    <div class="col-md-8 mx-auto text-center">
+      <div class="mb-4 text-danger fade-in">
+        <i class="fas fa-exclamation-circle" style="font-size: 5rem;"></i>
+      </div>
+      <h1 class="display-4 mb-3 fw-extrabold fade-in">
+        Error <%= typeof error !== 'undefined' && error && error.status ? error.status : '500' %>
+      </h1>
+      <p class="lead mb-4 text-muted fade-in">
+        <%= typeof error !== 'undefined' && error && error.message ? error.message : 'Something went wrong on our end.' %>
+      </p>
+      <div class="d-flex justify-content-center gap-3 fade-in mt-4">
+        <a href="/" class="btn btn-success px-4 py-2">Go to Homepage</a>
+        <a href="/contact" class="btn btn-outline-success px-4 py-2">Get Support</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
