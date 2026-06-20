@@ -82,8 +82,12 @@
             <% if (typeof user !== 'undefined' && user) { %>
               <li class="nav-item dropdown ms-lg-2">
                 <a class="nav-link dropdown-toggle d-flex align-items-center p-1" href="#" id="userProfileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: var(--radius-xl); outline: none;">
-                  <div class="user-avatar-initials d-flex align-items-center justify-content-center text-white fw-bold me-2 shadow-sm" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); font-size: 0.875rem;">
-                    <%= (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase() %>
+                  <div class="user-avatar-initials d-flex align-items-center justify-content-center text-white fw-bold me-2 shadow-sm" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); font-size: 0.875rem; overflow: hidden;">
+                    <% if (user.profilePicture) { %>
+                      <img src="<%= user.profilePicture %>" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                    <% } else { %>
+                      <%= (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase() %>
+                    <% } %>
                   </div>
                   <span class="d-none d-lg-inline text-muted me-1" style="font-weight: 600;"><%= user.firstName %></span>
                 </a>
@@ -98,7 +102,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item py-2 d-flex align-items-center" href="/dashboard">
+                    <a class="dropdown-item py-2 d-flex align-items-center" href="/profile">
                       <i class="fas fa-user me-2 text-success" style="width: 16px;"></i>Profile
                     </a>
                   </li>

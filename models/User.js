@@ -30,7 +30,9 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: function() {
+            return !this.googleId;
+        }
     },
     address: {
         type: String,
@@ -57,6 +59,14 @@ const userSchema = new mongoose.Schema({
     },
     resetPasswordExpire: {
         type: Date
+    },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true
+    },
+    profilePicture: {
+        type: String
     }
 }, {
     timestamps: true

@@ -1,5 +1,3 @@
-import { generateCodeVerifier, generateState, Google } from 'arctic';
-
 const { asyncHandler } = require('../utlis/asyncHandler');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
@@ -251,23 +249,138 @@ exports.postResetPassword = asyncHandler(async (req, res) => {
         success: 'Password reset successful! You can now log in with your new password.'
     });
 });
+// Google Auth - Redirect to Google Consent Page
+exports.initiateGoogleAuth = (req, res) => {
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    const redirectUri = process.env.GOOGLE_REDIRECT_URI;
 
-export const getGoogleLoginPage=asyncHandler(async(req,res)=>{
-    if(req.user) return res.redirect("/");
-
-    const state=generateState();
-    const codeVerifier=generateCodeVerifier();
-
-    const url=Google.createAuthorizationURL(state,codeVerifier,[
-        "oenid",//this is calaed scopes,there we are giving openid,and profile
-        "profile",//openid give token if needed,and profile gives user infromation
-        //we are telling google about the infromationthat we required from
-        "email"
-    ]);
-    const cookieConfig={
-        httpOnly:true,
-        secure:true,
-        maxAge:OAUTH_EXCHANGE_EXPIRY,
-        sameSite:"lax",//this is such that when google redirect to our website cookois are maintained
+    if (!clientId || !redirectUri) {
+        console.error('[Google OAuth Error]: GOOGLE_CLIENT_ID or GOOGLE_REDIRECT_URI is missing in .env');
+        return res.render('pages/login', {
+            title: 'Login - E-Waste Management',
+            path: '/login',
+            error: 'Google Sign-In is currently misconfigured. Please check .env settings.'
+        });
     }
+
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${encodeURIComponent(clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=profile%20email&state=google-oauth-state`;
+    res.redirect(authUrl);
+};
+
+// Google Auth Callback Handler
+exports.handleGoogleCallback = asyncHandler(async (req, res) => {
+    const { code, error } = req.query;
+
+    if (error) {
+        console.error('[Google OAuth Callback Error]:', error);
+        return res.render('pages/login', {
+            title: 'Login - E-Waste Management',
+            path: '/login',
+            error: `Google Login failed: ${error}`
+        });
+    }
+
+    if (!code) {
+        return res.render('pages/login', {
+            title: 'Login - E-Waste Management',
+            path: '/login',
+            error: 'Google authorization code is missing.'
+        });
+    }
+
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    const redirectUri = process.env.GOOGLE_REDIRECT_URI;
+
+    // Exchange authorization code for tokens
+    const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            code,
+            client_id: clientId,
+            client_secret: clientSecret,
+            redirect_uri: redirectUri,
+            grant_type: 'authorization_code'
+        })
+    });
+
+    const tokenData = await tokenResponse.json();
+
+    if (tokenData.error) {
+        console.error('[Google Token Exchange Error]:', tokenData.error_description || tokenData.error);
+        return res.render('pages/login', {
+            title: 'Login - E-Waste Management',
+            path: '/login',
+            error: 'Failed to exchange authorization code for access tokens.'
+        });
+    }
+
+    const accessToken = tokenData.access_token;
+
+    // Fetch user details from Google userinfo endpoint
+    const userinfoResponse = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: { Authorization: `Bearer ${accessToken}` }
+    });
+
+    const profile = await userinfoResponse.json();
+
+    if (profile.error) {
+        console.error('[Google Userinfo Fetch Error]:', profile.error_description || profile.error);
+        return res.render('pages/login', {
+            title: 'Login - E-Waste Management',
+            path: '/login',
+            error: 'Failed to fetch user profile details from Google.'
+        });
+    }
+
+    const { sub: googleId, email, given_name: firstName, family_name: lastName, picture: profilePicture } = profile;
+
+    // 1. Try to find user by googleId
+    let user = await User.findOne({ googleId });
+
+    if (!user) {
+        // 2. Try to find user by email (Account Linking)
+        user = await User.findOne({ email });
+
+        if (user) {
+            // Link Google account to existing local profile
+            user.googleId = googleId;
+            if (!user.profilePicture && profilePicture) {
+                user.profilePicture = profilePicture;
+            }
+            await user.save();
+            console.log(`[Google OAuth]: Linked Google ID to existing account for email ${email}`);
+        } else {
+            // 3. New User Registration
+            // Auto-generate a unique username
+            const baseUsername = email.split('@')[0].replace(/[^a-zA-Z0-9]/g, '');
+            const randomSuffix = Math.floor(100 + Math.random() * 900);
+            const username = `${baseUsername}${randomSuffix}`;
+
+            user = new User({
+                username,
+                firstName: firstName || 'Google',
+                lastName: lastName || 'User',
+                email,
+                googleId,
+                profilePicture
+            });
+
+            await user.save();
+            console.log(`[Google OAuth]: Created new account for email ${email}`);
+        }
+    }
+
+    // Set session user
+    req.session.user = user;
+    res.redirect('/dashboard');
 });
+
+// Render Profile Page
+exports.getProfile = (req, res) => {
+    res.render('pages/profile', {
+        title: 'My Profile - E-Waste Management',
+        path: '/profile'
+    });
+};

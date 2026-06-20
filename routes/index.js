@@ -24,9 +24,9 @@ router.get('/register', isGuest, authController.getRegister);
 router.post('/register', isGuest, authController.postRegister);
 router.get('/logout', isAuth, authController.logout);
 
-// Google Authentication Routes (Simulated)
-router.get('/auth/google', (req, res) => res.redirect('/dashboard'));
-router.get('/auth/google/callback', (req, res) => res.redirect('/dashboard'));
+// Google Authentication Routes
+router.get('/auth/google', authController.initiateGoogleAuth);
+router.get('/google/callback', authController.handleGoogleCallback);
 
 // Facebook Authentication Routes (Simulated)
 router.get('/auth/facebook', (req, res) => res.redirect('/dashboard'));
@@ -38,8 +38,9 @@ router.post('/forgot-password', isGuest, authController.postForgotPassword);
 router.get('/reset-password/:token', isGuest, authController.getResetPassword);
 router.post('/reset-password/:token', isGuest, authController.postResetPassword);
 
-// Dashboard
+// Dashboard & Profile
 router.get('/dashboard', isAuth, mainController.getDashboard);
+router.get('/profile', isAuth, authController.getProfile);
 
 // Articles
 router.get('/articles', educationController.getArticles);
