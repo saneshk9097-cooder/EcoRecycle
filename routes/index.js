@@ -35,6 +35,8 @@ router.get('/auth/facebook/callback', (req, res) => res.redirect('/dashboard'));
 // Forgot Password
 router.get('/forgot-password', isGuest, authController.getForgotPassword);
 router.post('/forgot-password', isGuest, authController.postForgotPassword);
+router.get('/reset-password/:token', isGuest, authController.getResetPassword);
+router.post('/reset-password/:token', isGuest, authController.postResetPassword);
 
 // Dashboard
 router.get('/dashboard', isAuth, mainController.getDashboard);
