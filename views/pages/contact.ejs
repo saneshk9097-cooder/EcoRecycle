@@ -79,7 +79,7 @@
               <label for="firstName" class="form-label">First Name</label>
               <div class="input-group-premium">
                 <i class="fas fa-user"></i>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John" required>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John" value="<%= typeof formData !== 'undefined' ? formData.firstName : '' %>" required>
                 <div class="invalid-feedback">First name is required.</div>
               </div>
             </div>
@@ -87,7 +87,7 @@
               <label for="lastName" class="form-label">Last Name</label>
               <div class="input-group-premium">
                 <i class="fas fa-user"></i>
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe" required>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe" value="<%= typeof formData !== 'undefined' ? formData.lastName : '' %>" required>
                 <div class="invalid-feedback">Last name is required.</div>
               </div>
             </div>
@@ -95,7 +95,7 @@
               <label for="email" class="form-label">Email</label>
               <div class="input-group-premium">
                 <i class="fas fa-envelope"></i>
-                <input type="email" class="form-control" id="email" name="email" placeholder="john@example.com" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="john@example.com" value="<%= typeof formData !== 'undefined' ? formData.email : '' %>" required>
                 <div class="invalid-feedback">Valid email is required.</div>
               </div>
             </div>
@@ -103,20 +103,20 @@
               <label for="phone" class="form-label">Phone (Optional)</label>
               <div class="input-group-premium">
                 <i class="fas fa-phone"></i>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 98765 43210">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 98765 43210" value="<%= typeof formData !== 'undefined' ? formData.phone : '' %>">
               </div>
             </div>
             <div class="col-12">
               <label for="subject" class="form-label">Subject</label>
               <div class="input-group-premium">
                 <i class="fas fa-tag"></i>
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="What is this regarding?" required>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="What is this regarding?" value="<%= typeof formData !== 'undefined' ? formData.subject : '' %>" required>
                 <div class="invalid-feedback">Please specify a subject.</div>
               </div>
             </div>
             <div class="col-12">
               <label for="message" class="form-label">Message</label>
-              <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message details here..." required></textarea>
+              <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message details here..." required><%= typeof formData !== 'undefined' ? formData.message : '' %></textarea>
               <div class="invalid-feedback">Message content is required.</div>
             </div>
             <div class="col-12 mt-4">

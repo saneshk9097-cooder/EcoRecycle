@@ -34,14 +34,6 @@ exports.getContact = (req, res) => {
     });
 };
 
-exports.postContact = (req, res) => {
-    res.render('pages/contact', {
-        title: 'Contact Us',
-        path: '/contact',
-        success: 'Your message has been sent successfully!'
-    });
-};
-
 exports.getDashboard = asyncHandler(async (req, res) => {
     const pickups = await Pickup.find({ user: req.session.user._id }).sort({ createdAt: -1 });
 

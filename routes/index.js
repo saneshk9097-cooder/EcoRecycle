@@ -6,6 +6,8 @@ const educationController = require('../controllers/educationController');
 const { isAuth, isGuest } = require('../middleware/auth');
 
 const reviewController = require('../controllers/reviewController');
+const contactController = require('../controllers/contactController');
+const { validateContact } = require('../middleware/contactValidator');
 
 // Home page
 router.get('/', mainController.getIndex);
@@ -15,7 +17,8 @@ router.get('/about', mainController.getAbout);
 
 // Contact page
 router.get('/contact', mainController.getContact);
-router.post('/contact', mainController.postContact);
+router.post('/contact', validateContact, contactController.submitContact);
+router.get('/admin/contacts', isAuth, contactController.getContactMessages);
 
 // Authentication
 router.get('/login', isGuest, authController.getLogin);
